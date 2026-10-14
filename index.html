@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atsadawut Prasankham | Data Analyst Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans leading-relaxed">
+
+    <header class="max-w-6xl mx-auto px-6 py-12 border-b border-slate-800 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div>
+            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+                Available for Internship: Nov 2026 - Mar 2027
+            </span>
+            <h1 class="text-4xl font-bold mt-4 text-white">Atsadawut Prasankham</h1>
+            <p class="text-xl text-emerald-400 font-medium mt-1">Data Analyst Intern</p>
+            <p class="text-slate-400 mt-2 max-w-2xl text-sm">
+                Final-year Data Science and Software Innovation student at Ubon Ratchathani University. Experienced in building automated ETL data pipelines, relational database schemas, and interactive analytics dashboards using Python, Pandas, Matplotlib, and SQL.
+            </p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+            <a href="https://docs.google.com/document/d/15T5NsIYkHv8B-dfSgYsCciFCTAziuxdzB-f8BqPyRA8/edit" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-5 py-2.5 rounded-lg text-sm transition">
+                View Resume (DA)
+            </a>
+            <a href="https://github.com/ManYaiMark" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 px-5 py-2.5 rounded-lg text-sm transition">
+                GitHub Profile
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-10 space-y-12">
+
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-xl">
+                <p class="text-slate-400 text-xs uppercase">Core Stack</p>
+                <p class="text-2xl font-bold text-white mt-1">Python & SQL</p>
+                <p class="text-emerald-400 text-xs mt-1">Pandas, Matplotlib, SQLite</p>
+            </div>
+            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-xl">
+                <p class="text-slate-400 text-xs uppercase">Data Engineering</p>
+                <p class="text-2xl font-bold text-white mt-1">ETL Pipelines</p>
+                <p class="text-emerald-400 text-xs mt-1">Excel / CSV / TXT & NLP Parsing</p>
+            </div>
+            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-xl">
+                <p class="text-slate-400 text-xs uppercase">Analytics Projects</p>
+                <p class="text-2xl font-bold text-white mt-1">3 End-to-End</p>
+                <p class="text-emerald-400 text-xs mt-1">Finance, Retail POS, Inventory</p>
+            </div>
+            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-xl">
+                <p class="text-slate-400 text-xs uppercase">Education</p>
+                <p class="text-2xl font-bold text-white mt-1">Data Science</p>
+                <p class="text-emerald-400 text-xs mt-1">Ubon Ratchathani University</p>
+            </div>
+        </section>
+
+        <section class="grid md:grid-cols-3 gap-6 items-center bg-slate-800/40 border border-slate-800 p-6 rounded-2xl">
+            <div class="md:col-span-1 space-y-3">
+                <h2 class="text-xl font-bold text-white">Technical Proficiency</h2>
+                <p class="text-slate-400 text-sm">
+                    Combining software engineering fundamentals with data analytics to build complete data pipelines—from raw data ingestion to visual storytelling.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-2">
+                    <span class="bg-slate-800 border border-slate-700 px-3 py-1 rounded text-xs">Pandas</span>
+                    <span class="bg-slate-800 border border-slate-700 px-3 py-1 rounded text-xs">Matplotlib</span>
+                    <span class="bg-slate-800 border border-slate-700 px-3 py-1 rounded text-xs">SQLite</span>
+                    <span class="bg-slate-800 border border-slate-700 px-3 py-1 rounded text-xs">Data Cleaning</span>
+                    <span class="bg-slate-800 border border-slate-700 px-3 py-1 rounded text-xs">Django</span>
+                    <span class="bg-slate-800 border border-slate-700 px-3 py-1 rounded text-xs">Database Design</span>
+                </div>
+            </div>
+            <div class="md:col-span-2 bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                <canvas id="skillsChart" height="110"></canvas>
+            </div>
+        </section>
+
+        <section class="space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Featured Data Projects</h2>
+                    <p class="text-slate-400 text-sm">Filter projects by primary data competency</p>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="filterProjects('all')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500 text-slate-950" id="btn-all">All Projects</button>
+                    <button onclick="filterProjects('dashboard')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" id="btn-dashboard">Dashboards & Viz</button>
+                    <button onclick="filterProjects('pipeline')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" id="btn-pipeline">ETL & Database</button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6" id="project-grid">
+                <div class="project-card bg-slate-800/50 border border-slate-700/70 rounded-xl p-6 flex flex-col justify-between" data-category="dashboard pipeline">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-lg font-bold text-white">MoneyMind</h3>
+                            <span class="text-xs bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded">Financial Analytics</span>
+                        </div>
+                        <p class="text-slate-400 text-xs mt-3">
+                            Personal finance analytics platform featuring automated multi-format data ingestion and interactive spending visualization.
+                        </p>
+                        <ul class="text-slate-300 text-xs mt-4 space-y-2 list-disc list-inside">
+                            <li><strong>ETL Pipeline:</strong> Automated ingestion from Excel, CSV, TXT, and NLP text parsing.</li>
+                            <li><strong>Data Processing:</strong> Used Pandas & SQLite to aggregate transactions by category and budget.</li>
+                            <li><strong>Visualization:</strong> Built interactive dashboard charts to highlight spending anomalies.</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-700/60 flex justify-between items-center">
+                        <span class="text-xs text-slate-400">Pandas • SQLite • Django</span>
+                        <a href="https://github.com/ManYaiMark/MoneyMind" target="_blank" class="text-emerald-400 hover:underline text-xs font-semibold">View Code →</a>
+                    </div>
+                </div>
+
+                <div class="project-card bg-slate-800/50 border border-slate-700/70 rounded-xl p-6 flex flex-col justify-between" data-category="dashboard">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-lg font-bold text-white">dstoolbox (POS Analytics)</h3>
+                            <span class="text-xs bg-blue-500/10 text-blue-400 px-2.5 py-1 rounded">Retail BI</span>
+                        </div>
+                        <p class="text-slate-400 text-xs mt-3">
+                            Point-of-Sale system with an integrated executive analytics dashboard for tracking sales performance and customer loyalty.
+                        </p>
+                        <ul class="text-slate-300 text-xs mt-4 space-y-2 list-disc list-inside">
+                            <li><strong>Sales Dashboard:</strong> Visualized revenue trends, top-selling items, and order status via Matplotlib.</li>
+                            <li><strong>Customer Analytics:</strong> Modeled point accrual and coupon redemption behavior to track retention.</li>
+                            <li><strong>Data Modeling:</strong> Structured relational schemas for orders, carts, and session logs.</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-700/60 flex justify-between items-center">
+                        <span class="text-xs text-slate-400">Matplotlib • Python • SQL</span>
+                        <a href="https://github.com/ManYaiMark/dstoolbox" target="_blank" class="text-emerald-400 hover:underline text-xs font-semibold">View Code →</a>
+                    </div>
+                </div>
+
+                <div class="project-card bg-slate-800/50 border border-slate-700/70 rounded-xl p-6 flex flex-col justify-between" data-category="pipeline">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-lg font-bold text-white">Borrowing System</h3>
+                            <span class="text-xs bg-purple-500/10 text-purple-400 px-2.5 py-1 rounded">Database & Reporting</span>
+                        </div>
+                        <p class="text-slate-400 text-xs mt-3">
+                            Library inventory and circulation tracking database designed for real-time stock auditing and historical usage reporting.
+                        </p>
+                        <ul class="text-slate-300 text-xs mt-4 space-y-2 list-disc list-inside">
+                            <li><strong>Database Design:</strong> Normalized SQLite schema tracking book availability and user logs.</li>
+                            <li><strong>Admin Reporting:</strong> Created historical borrowing views to identify high-demand titles.</li>
+                            <li><strong>Data Integrity:</strong> Enforced state validation across borrow and return workflows.</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-700/60 flex justify-between items-center">
+                        <span class="text-xs text-slate-400">SQLite • Database Design • Python</span>
+                        <a href="https://github.com/ManYaiMark/Borrowing" target="_blank" class="text-emerald-400 hover:underline text-xs font-semibold">View Code →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="max-w-6xl mx-auto px-6 py-8 border-t border-slate-800 text-center md:flex justify-between items-center text-xs text-slate-400">
+        <p>© 2026 Atsadawut Prasankham — Data Science & Software Innovation</p>
+        <div class="space-x-4 mt-2 md:mt-0">
+            <span>Tel: 081-164-3122</span>
+            <span>•</span>
+            <a href="mailto:atasdwut123@gmail.com" class="hover:text-emerald-400">atasdwut123@gmail.com</a>
+            <span>•</span>
+            <a href="https://github.com/ManYaiMark" target="_blank" class="hover:text-emerald-400">github.com/ManYaiMark</a>
+        </div>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('skillsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Python (Pandas)', 'SQL & SQLite', 'Data Visualization (Matplotlib)', 'ETL & Data Cleaning', 'Database Architecture', 'Django Web Framework'],
+                datasets: [{
+                    label: 'Project Application Depth (%)',
+                    data: [90, 85, 85, 88, 80, 92],
+                    backgroundColor: 'rgba(16, 185, 129, 0.7)',
+                    borderColor: 'rgba(16, 185, 129, 1)',
+                    borderWidth: 1,
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { max: 100, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
+                    y: { grid: { display: false }, ticks: { color: '#e2e8f0' } }
+                }
+            }
+        });
+
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = ['all', 'dashboard', 'pipeline'];
+            
+            buttons.forEach(btn => {
+                const el = document.getElementById('btn-' + btn);
+                if (btn === category) {
+                    el.className = 'px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500 text-slate-950';
+                } else {
+                    el.className = 'px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700';
+                }
+            });
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category.includes(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
