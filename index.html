@@ -1,219 +1,2784 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atsadawut Prasankham | Data Analyst Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atsadawut Prasankham | Portfolio — Data Analyst · Web Dev · Software Dev · QA</title>
+  <style>
+    :root {
+      /* Clean Minimal Sky-Blue Dark Theme */
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #121212;
+      --bg-card: #171717;
+      --bg-card-hover: #1f1f1f;
+      --bg-glass: rgba(10, 10, 10, 0.88);
+      --text-primary: #f5f5f5;
+      --text-secondary: #d4d4d4;
+      --text-muted: #a3a3a3;
+      --border-color: rgba(163, 163, 163, 0.16);
+      --sky-primary: #38bdf8;
+      --sky-hover: #0ea5e9;
+      --sky-soft: rgba(56, 189, 248, 0.12);
+      --sky-border: rgba(56, 189, 248, 0.35);
+      /* Keep original 4 role bar colors per user instruction */
+      --bar-da: #38bdf8;
+      --bar-web: #818cf8;
+      --bar-dev: #34d399;
+      --bar-qa: #fbbf24;
+      --shadow-sm: 0 8px 24px -8px rgba(0, 0, 0, 0.6);
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 8px;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Thai', sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+    }
+
+    html[data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #f0f7ff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f8fafc;
+      --bg-glass: rgba(248, 250, 252, 0.9);
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --border-color: rgba(15, 23, 42, 0.1);
+      --sky-primary: #0284c7;
+      --sky-hover: #0369a1;
+      --sky-soft: rgba(2, 132, 199, 0.09);
+      --sky-border: rgba(2, 132, 199, 0.3);
+      --shadow-sm: 0 8px 20px -8px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.65;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--sky-primary);
+      text-decoration: none;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+
+    a:hover {
+      opacity: 0.85;
+    }
+
+    /* Sticky Top Navigation */
+    header.navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+    }
+
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--sky-primary);
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.35rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--sky-primary);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-chip {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .btn-chip:hover {
+      border-color: var(--sky-primary);
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 3.25rem 0 2.5rem;
+      display: grid;
+      grid-template-columns: 1.3fr 0.95fr;
+      gap: 2.25rem;
+      align-items: center;
+    }
+
+    @media (max-width: 920px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 2rem 0 1.5rem;
+      }
+    }
+
+    .availability-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: var(--sky-soft);
+      border: 1px solid var(--sky-border);
+      color: var(--sky-primary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--sky-primary);
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 3.8vw, 2.95rem);
+      line-height: 1.18;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.65rem;
+      color: var(--text-primary);
+    }
+
+    .sky-highlight {
+      color: var(--sky-primary);
+    }
+
+    .hero-subtitle {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.35rem;
+      max-width: 650px;
+    }
+
+    .priority-strip-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 0.55rem;
+    }
+
+    .role-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.45rem;
+    }
+
+    .role-tab {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 0.48rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.18s ease;
+    }
+
+    .role-tab .rank-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.08rem 0.4rem;
+      border-radius: 5px;
+      background: rgba(148, 163, 184, 0.15);
+      color: var(--text-primary);
+    }
+
+    .role-tab:hover {
+      border-color: var(--sky-primary);
+      color: var(--text-primary);
+    }
+
+    .role-tab.active {
+      background: var(--sky-soft);
+      border-color: var(--sky-primary);
+      color: var(--sky-primary);
+    }
+
+    .role-tab.active .rank-badge {
+      background: var(--sky-primary);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    /* Minimal Sky-Blue Primary Button (No Rainbow Gradient) */
+    .btn-primary {
+      background: var(--sky-primary);
+      color: #0b111e;
+      font-weight: 700;
+      padding: 0.68rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      border: 1px solid var(--sky-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    html[data-theme="light"] .btn-primary {
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--sky-hover);
+      transform: translateY(-1px);
+      opacity: 1;
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      font-weight: 600;
+      padding: 0.68rem 1.05rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--sky-primary);
+      background: var(--bg-card-hover);
+    }
+
+    /* Candidate Snapshot Card — Top colored strip REMOVED as requested */
+    .profile-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.55rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.05rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .profile-header h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .uni-tag {
+      font-size: 0.76rem;
+      color: var(--sky-primary);
+      background: var(--sky-soft);
+      border: 1px solid var(--sky-border);
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .quick-facts {
+      display: grid;
+      gap: 0.7rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .fact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.87rem;
+    }
+
+    .fact-label {
+      color: var(--text-muted);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .fact-value {
+      color: var(--text-primary);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* Keep Target Role Preference Bars with original colors */
+    .priority-bars {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1rem;
+    }
+
+    .priority-bars-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+      font-weight: 700;
+    }
+
+    .p-bar-item {
+      margin-bottom: 0.6rem;
+    }
+
+    .p-bar-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.81rem;
+      font-weight: 600;
+      margin-bottom: 0.22rem;
+    }
+
+    .p-bar-track {
+      height: 7px;
+      background: rgba(148, 163, 184, 0.15);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .p-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    /* Sections */
+    section {
+      padding: 2.5rem 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--sky-primary);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+      font-weight: 800;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      max-width: 560px;
+    }
+
+    /* Interactive System Simulator (Step-by-Step Animated Workflows) */
+    .sim-wrapper {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sim-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-bottom: 1.15rem;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 1.25rem;
+    }
+
+    .sim-system-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .sim-sys-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 0.55rem 1.05rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .sim-sys-btn:hover {
+      border-color: var(--sky-primary);
+      color: var(--text-primary);
+    }
+
+    .sim-sys-btn.active {
+      background: var(--sky-primary);
+      color: #0b111e;
+      border-color: var(--sky-primary);
+    }
+
+    html[data-theme="light"] .sim-sys-btn.active {
+      color: #ffffff;
+    }
+
+    /* Stepper Progress Indicator */
+    .stepper-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+      background: var(--bg-secondary);
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+    }
+
+    .step-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .step-pill.active {
+      background: var(--sky-soft);
+      color: var(--sky-primary);
+      border: 1px solid var(--sky-border);
+    }
+
+    .step-pill.done {
+      color: #34d399;
+    }
+
+    .step-arrow {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    /* Animated Stage Transition */
+    .stage-panel {
+      animation: fadeSlideIn 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* MoneyMind Step 1 & Step 2 Styles */
+    .mm-input-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    @media (max-width: 820px) {
+      .mm-input-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .mm-textarea {
+      width: 100%;
+      min-height: 165px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      border-radius: 10px;
+      padding: 0.9rem;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      resize: vertical;
+    }
+
+    .mm-textarea:focus {
+      outline: none;
+      border-color: var(--sky-primary);
+    }
+
+    .mm-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+      margin-bottom: 1rem;
+    }
+
+    .mm-table th, .mm-table td {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .mm-table th {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      background: var(--bg-secondary);
+    }
+
+    .typo-alert-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(251, 191, 36, 0.14);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      color: #fbbf24;
+      padding: 0.22rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .btn-fix-typo {
+      background: var(--sky-primary);
+      color: #0b111e;
+      border: none;
+      padding: 0.22rem 0.6rem;
+      border-radius: 5px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-left: 0.4rem;
+    }
+
+    /* MoneyMind Step 3: Exact White UI Replication from Screenshot 3 */
+    .mm-real-dashboard {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    .mm-real-nav {
+      background: var(--bg-card);
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .mm-real-logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #3b82f6;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .mm-real-links {
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      flex-wrap: wrap;
+    }
+
+    .mm-real-links span {
+      cursor: pointer;
+    }
+
+    .mm-real-links span:hover {
+      color: #3b82f6;
+    }
+
+    .mm-real-logout {
+      border: 1px solid #fb7185;
+      color: #fb7185;
+      padding: 0.28rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .mm-real-body {
+      padding: 1.35rem;
+    }
+
+    .mm-kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 780px) {
+      .mm-kpi-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .mm-kpi-blue {
+      background: #2563eb;
+      color: #ffffff;
+      padding: 1.2rem 1.35rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+    }
+
+    .mm-kpi-white {
+      background: var(--bg-card);
+      padding: 1.2rem 1.35rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .mm-charts-row {
+      display: grid;
+      grid-template-columns: 0.95fr 1.25fr;
+      gap: 1.1rem;
+    }
+
+    @media (max-width: 860px) {
+      .mm-charts-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .mm-chart-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.2rem;
+    }
+
+    .mm-chart-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    /* POS & Borrowing Cards */
+    .pos-menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .pos-item-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 0.95rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.65rem;
+    }
+
+    /* Target Roles & Projects Grid */
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 1024px) {
+      .roles-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .roles-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .role-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .role-card:hover, .role-card.highlighted {
+      border-color: var(--sky-primary);
+      transform: translateY(-2px);
+    }
+
+    .role-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.7rem;
+    }
+
+    .role-priority-tag {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      font-weight: 700;
+      padding: 0.18rem 0.5rem;
+      border-radius: 5px;
+      background: var(--sky-soft);
+      color: var(--sky-primary);
+    }
+
+    .role-card h3 {
+      font-size: 1.04rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .role-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.85rem;
+    }
+
+    .mini-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .mini-tag {
+      font-size: 0.73rem;
+      padding: 0.16rem 0.48rem;
+      border-radius: 5px;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 960px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s ease;
+    }
+
+    .project-card:hover {
+      border-color: var(--sky-primary);
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .github-link-pill {
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 0.24rem 0.65rem;
+      border-radius: 999px;
+      background: var(--sky-soft);
+      border: 1px solid var(--sky-border);
+      color: var(--sky-primary);
+      white-space: nowrap;
+    }
+
+    .project-tagline {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 0.95rem;
+    }
+
+    .project-lens-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .lens-badge {
+      display: inline-block;
+      font-size: 0.71rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--sky-primary);
+      margin-bottom: 0.45rem;
+    }
+
+    .project-bullets {
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .project-bullets li {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .project-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--sky-primary);
+      font-weight: bold;
+    }
+
+    .tech-stack-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .tech-pill {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      padding: 0.18rem 0.52rem;
+      border-radius: 5px;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+    }
+
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 880px) {
+      .two-col-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem;
+    }
+
+    .skill-group {
+      margin-bottom: 1.1rem;
+    }
+
+    .skill-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-group-title {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.45rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 1.2rem;
+      border-left: 2px solid var(--border-color);
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -6px;
+      top: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--sky-primary);
+    }
+
+    .timeline-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+
+    .timeline-sub {
+      font-size: 0.84rem;
+      color: var(--sky-primary);
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    footer.footer {
+      margin-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      padding: 2.25rem 0 2.75rem;
+      background: var(--bg-secondary);
+    }
+
+    .contact-banner {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.15rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--sky-primary);
+      color: #0b111e;
+      font-weight: 700;
+      padding: 0.6rem 1.05rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: all 0.22s ease;
+      z-index: 999;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans leading-relaxed">
-
-    <header class="max-w-6xl mx-auto px-6 py-12 border-b border-slate-800 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<body>
+  <!-- Sticky Top Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-badge">AP</div>
         <div>
-            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-                Available for Internship: Nov 2026 - Mar 2027
-            </span>
-            <h1 class="text-4xl font-bold mt-4 text-white">Atsadawut Prasankham</h1>
-            <p class="text-xl text-emerald-400 font-medium mt-1">Data Analyst Intern</p>
-            <p class="text-slate-400 mt-2 max-w-2xl text-sm">
-                Final-year Data Science and Software Innovation student at Ubon Ratchathani University. Experienced in building automated ETL data pipelines, relational database schemas, and interactive analytics dashboards using Python, Pandas, Matplotlib, and SQL.
+          <div>Atsadawut Prasankham</div>
+          <div style="font-size: 0.73rem; color: var(--text-muted); font-weight: 500;" data-i18n="nav_sub">Data Science & Software Innovation · UBU</div>
+        </div>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#sandbox" data-i18n="nav_sandbox">Interactive System Flow</a></li>
+        <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
+        <li><a href="#roles" data-i18n="nav_roles">Target Roles</a></li>
+        <li><a href="#skills" data-i18n="nav_skills">Skills & Education</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <button class="btn-chip" id="langToggle" onclick="toggleLanguage()">
+          <span>🌐</span> <span id="langLabel">EN / อังกฤษ</span>
+        </button>
+        <button class="btn-chip" id="themeToggle" onclick="toggleTheme()">
+          <span id="themeIcon">🌙</span> <span id="themeLabel">Dark</span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div>
+        <div class="availability-pill">
+          <span class="pulse-dot"></span>
+          <span data-i18n="hero_avail">Available for Internship: Nov 2026 – Mar 2027</span>
+        </div>
+
+        <h1>
+          <span data-i18n="hero_greeting">Hi, I'm</span> <span class="sky-highlight" data-i18n="hero_name">Atsadawut Prasankham</span>
+        </h1>
+
+        <p class="hero-subtitle" id="heroDynamicPitch">
+          Final-year Data Science and Software Innovation student at Ubon Ratchathani University. Seeking an internship (Nov 2026 – Mar 2027) with top priority in Data Analytics (#1), alongside strong project proficiency in Web Development (#2), Software Development (#3), and QA (#4).
+        </p>
+
+        <div class="priority-strip-label" data-i18n="filter_label">
+          Click to tailor portfolio view by internship priority:
+        </div>
+
+        <div class="role-selector" role="tablist">
+          <button class="role-tab active" onclick="setRoleView('all')" id="tab-all">
+            <span data-i18n="role_all">All Roles Overview</span>
+          </button>
+          <button class="role-tab" onclick="setRoleView('da')" id="tab-da">
+            <span class="rank-badge">#1</span> <span data-i18n="role_da">Data Analyst (DA)</span>
+          </button>
+          <button class="role-tab" onclick="setRoleView('web')" id="tab-web">
+            <span class="rank-badge">#2</span> <span data-i18n="role_web">Web Developer</span>
+          </button>
+          <button class="role-tab" onclick="setRoleView('dev')" id="tab-dev">
+            <span class="rank-badge">#3</span> <span data-i18n="role_dev">Software Developer</span>
+          </button>
+          <button class="role-tab" onclick="setRoleView('qa')" id="tab-qa">
+            <span class="rank-badge">#4</span> <span data-i18n="role_qa">QA & Testing</span>
+          </button>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#sandbox" class="btn-primary">
+            <span data-i18n="btn_explore">Explore Projects & Interactive Demo</span>
+          </a>
+          <a href="https://github.com/ManYaiMark" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <span>💻</span> <span>GitHub (ManYaiMark)</span>
+          </a>
+          <a href="https://docs.google.com/document/d/15T5NsIYkHv8B-dfSgYsCciFCTAziuxdzB-f8BqPyRA8/edit" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <span>📄</span> <span data-i18n="btn_resume_da">Resume (DA)</span>
+          </a>
+          <button class="btn-secondary" onclick="copyEmail()">
+            <span>📋</span> <span data-i18n="btn_copy_email">Copy Email</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Candidate Snapshot Card (Top rainbow bar removed, 4 Role Preference bars kept in original colors) -->
+      <aside class="profile-card">
+        <div class="profile-header">
+          <div>
+            <h2 data-i18n="card_title">Candidate Snapshot</h2>
+            <div style="font-size: 0.8rem; color: var(--text-muted);" data-i18n="card_sub">อัษฏาวุธ ประสารคำ (Atsadawut)</div>
+          </div>
+          <span class="uni-tag">UBU · Senior</span>
+        </div>
+
+        <div class="quick-facts">
+          <div class="fact-row">
+            <span class="fact-label" data-i18n="fact_uni_label">University</span>
+            <span class="fact-value" data-i18n="fact_uni_val">Ubon Ratchathani University</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label" data-i18n="fact_major_label">Major</span>
+            <span class="fact-value" data-i18n="fact_major_val">Data Science & Software Innovation</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label" data-i18n="fact_period_label">Internship Window</span>
+            <span class="fact-value" style="color: var(--sky-primary);" data-i18n="fact_period_val">Nov 2026 – Mar 2027</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label" data-i18n="fact_stack_label">Core Stack</span>
+            <span class="fact-value">Python · SQL · Pandas · Django</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">GitHub</span>
+            <span class="fact-value"><a href="https://github.com/ManYaiMark" target="_blank" rel="noopener noreferrer">github.com/ManYaiMark</a></span>
+          </div>
+        </div>
+
+        <div class="priority-bars">
+          <div class="priority-bars-title" data-i18n="pref_heading">Target Role Preference & Alignment</div>
+
+          <div class="p-bar-item">
+            <div class="p-bar-top">
+              <span>#1 Data Analyst (DA)</span>
+              <span style="color: var(--bar-da);" data-i18n="p1_tag">Top Priority</span>
+            </div>
+            <div class="p-bar-track">
+              <div class="p-bar-fill" style="width: 100%; background: var(--bar-da);"></div>
+            </div>
+          </div>
+
+          <div class="p-bar-item">
+            <div class="p-bar-top">
+              <span>#2 Web Developer (Django / Full-Stack)</span>
+              <span style="color: var(--bar-web);" data-i18n="p2_tag">High Interest</span>
+            </div>
+            <div class="p-bar-track">
+              <div class="p-bar-fill" style="width: 88%; background: var(--bar-web);"></div>
+            </div>
+          </div>
+
+          <div class="p-bar-item">
+            <div class="p-bar-top">
+              <span>#3 Software Developer (Python / Backend)</span>
+              <span style="color: var(--bar-dev);" data-i18n="p3_tag">Strong Fit</span>
+            </div>
+            <div class="p-bar-track">
+              <div class="p-bar-fill" style="width: 82%; background: var(--bar-dev);"></div>
+            </div>
+          </div>
+
+          <div class="p-bar-item" style="margin-bottom: 0;">
+            <div class="p-bar-top">
+              <span>#4 Quality Assurance (QA / Data Audit)</span>
+              <span style="color: var(--bar-qa);" data-i18n="p4_tag">Ready to Contribute</span>
+            </div>
+            <div class="p-bar-track">
+              <div class="p-bar-fill" style="width: 75%; background: var(--bar-qa);"></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+
+
+    <!-- Section: Featured Projects -->
+    <section id="projects">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow" data-i18n="sec2_eyebrow">Featured Portfolio Projects</div>
+          <h2 class="section-title" data-i18n="sec2_title">Real-World Systems & Analytics Pipelines</h2>
+        </div>
+        <p class="section-desc" id="projectLensIndicator">
+          Showing complete portfolio highlights across Data Analytics (#1), Web Dev (#2), Software Dev (#3), and QA (#4).
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1: MoneyMind -->
+        <article class="project-card">
+          <div>
+            <div class="project-top">
+              <div>
+                <h3 class="project-title">MoneyMind</h3>
+                <div class="project-tagline" data-i18n="p1_sub">Personal Financial Analytics & Automated ETL Platform</div>
+              </div>
+              <a href="https://github.com/ManYaiMark/MoneyMind" target="_blank" rel="noopener noreferrer" class="github-link-pill">
+                GitHub ↗
+              </a>
+            </div>
+
+            <div class="project-lens-box">
+              <span class="lens-badge" id="p1-lens-label">ALL-AROUND HIGHLIGHTS</span>
+              <ul class="project-bullets" id="p1-bullets"></ul>
+            </div>
+          </div>
+
+          <div class="tech-stack-row">
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">Pandas</span>
+            <span class="tech-pill">Django</span>
+            <span class="tech-pill">SQLite</span>
+            <span class="tech-pill">NLP ETL</span>
+            <span class="tech-pill">Bootstrap</span>
+          </div>
+        </article>
+
+        <!-- Project 2: dstoolbox -->
+        <article class="project-card">
+          <div>
+            <div class="project-top">
+              <div>
+                <h3 class="project-title">dstoolbox (POS)</h3>
+                <div class="project-tagline" data-i18n="p2_sub">Restaurant POS, Sales Analytics & Loyalty System</div>
+              </div>
+              <a href="https://github.com/ManYaiMark/dstoolbox-gprj" target="_blank" rel="noopener noreferrer" class="github-link-pill">
+                GitHub ↗
+              </a>
+            </div>
+
+            <div class="project-lens-box">
+              <span class="lens-badge" id="p2-lens-label">ALL-AROUND HIGHLIGHTS</span>
+              <ul class="project-bullets" id="p2-bullets"></ul>
+            </div>
+          </div>
+
+          <div class="tech-stack-row">
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">Matplotlib</span>
+            <span class="tech-pill">Django POS</span>
+            <span class="tech-pill">SQL Schema</span>
+            <span class="tech-pill">Session Auth</span>
+          </div>
+        </article>
+
+        <!-- Project 3: Borrowing -->
+        <article class="project-card">
+          <div>
+            <div class="project-top">
+              <div>
+                <h3 class="project-title">Borrowing</h3>
+                <div class="project-tagline" data-i18n="p3_sub">Library Inventory Circulation & Audit System</div>
+              </div>
+              <a href="https://github.com/ManYaiMark/Borrowing" target="_blank" rel="noopener noreferrer" class="github-link-pill">
+                GitHub ↗
+              </a>
+            </div>
+
+            <div class="project-lens-box">
+              <span class="lens-badge" id="p3-lens-label">ALL-AROUND HIGHLIGHTS</span>
+              <ul class="project-bullets" id="p3-bullets"></ul>
+            </div>
+          </div>
+
+          <div class="tech-stack-row">
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">SQLite</span>
+            <span class="tech-pill">Django Admin</span>
+            <span class="tech-pill">Audit Views</span>
+            <span class="tech-pill">HTML/CSS</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section: 4 Target Roles Breakdown -->
+    <section id="roles">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow" data-i18n="sec1_eyebrow">Internship Role Alignment</div>
+          <h2 class="section-title" data-i18n="sec1_title">How My Skills Fit Your Team (By Priority)</h2>
+        </div>
+        <p class="section-desc" data-i18n="sec1_desc">
+          Click any role card below to filter my projects and technical highlights for that specific track.
+        </p>
+      </div>
+
+      <div class="roles-grid">
+        <div class="role-card" id="card-da" onclick="setRoleView('da')">
+          <div class="role-card-top">
+            <span class="role-priority-tag">PRIORITY #1</span>
+            <span>📊</span>
+          </div>
+          <h3 data-i18n="r1_title">Data Analyst (DA)</h3>
+          <p data-i18n="r1_desc">
+            Transforming raw datasets into actionable business insights via data cleaning, SQL querying, Exploratory Data Analysis (EDA), ETL pipelines, and automated dashboards.
+          </p>
+          <div class="mini-tags">
+            <span class="mini-tag">Python (Pandas)</span>
+            <span class="mini-tag">Matplotlib</span>
+            <span class="mini-tag">SQL / SQLite</span>
+            <span class="mini-tag">ETL & Cleaning</span>
+          </div>
+        </div>
+
+        <div class="role-card" id="card-web" onclick="setRoleView('web')">
+          <div class="role-card-top">
+            <span class="role-priority-tag">PRIORITY #2</span>
+            <span>🌐</span>
+          </div>
+          <h3 data-i18n="r2_title">Web Developer</h3>
+          <p data-i18n="r2_desc">
+            Building responsive, end-to-end web applications with Django views and templates, Bootstrap dashboards, OAuth authentication, and intuitive user workflows.
+          </p>
+          <div class="mini-tags">
+            <span class="mini-tag">Django</span>
+            <span class="mini-tag">HTML5 & CSS3</span>
+            <span class="mini-tag">Bootstrap</span>
+            <span class="mini-tag">django-allauth</span>
+          </div>
+        </div>
+
+        <div class="role-card" id="card-dev" onclick="setRoleView('dev')">
+          <div class="role-card-top">
+            <span class="role-priority-tag">PRIORITY #3</span>
+            <span>⚙️</span>
+          </div>
+          <h3 data-i18n="r3_title">Software Developer</h3>
+          <p data-i18n="r3_desc">
+            Designing relational database schemas, backend business logic, NLP text-parsing import pipelines (Excel/CSV/TXT), and POS/loyalty accrual engines.
+          </p>
+          <div class="mini-tags">
+            <span class="mini-tag">Python</span>
+            <span class="mini-tag">System Architecture</span>
+            <span class="mini-tag">Database Design</span>
+            <span class="mini-tag">NLP Parsing</span>
+          </div>
+        </div>
+
+        <div class="role-card" id="card-qa" onclick="setRoleView('qa')">
+          <div class="role-card-top">
+            <span class="role-priority-tag">PRIORITY #4</span>
+            <span>🛡️</span>
+          </div>
+          <h3 data-i18n="r4_title">QA & System Testing</h3>
+          <p data-i18n="r4_desc">
+            Ensuring data pipeline accuracy, auditing historical user & inventory logs, monitoring overdue/edge-case patterns, and debugging end-to-end transaction flows.
+          </p>
+          <div class="mini-tags">
+            <span class="mini-tag">Data Validation</span>
+            <span class="mini-tag">Debugging</span>
+            <span class="mini-tag">Audit Reporting</span>
+          </div>
+        </div>
+      </div>
+    </section>
+        <!-- Section: Interactive Step-by-Step System Simulator (Replaces Old Mock Section) -->
+    <section id="sandbox">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow" data-i18n="sim_eyebrow">Interactive System Walkthrough</div>
+          <h2 class="section-title" data-i18n="sim_title">ทดลองขั้นตอนการทำงานจริงของทั้ง 3 โปรเจกต์</h2>
+        </div>
+        <p class="section-desc" data-i18n="sim_desc">
+          เลือกโปรเจกต์แล้วกดทำตามขั้นตอนตั้งแต่ต้นจนจบ เพื่อดูการทำงานของระบบและหน้า Dashboard ที่คำนวณจากข้อมูลที่คุณเพิ่งทำรายการจริง
+        </p>
+      </div>
+
+      <div class="sim-wrapper">
+        <div class="sim-top-bar">
+          <div class="sim-system-tabs">
+            <button class="sim-sys-btn active" id="sys-btn-moneymind" onclick="selectSystem('moneymind')">
+              1. MoneyMind (Smart Input ETL & Dashboard)
+            </button>
+            <button class="sim-sys-btn" id="sys-btn-pos" onclick="selectSystem('pos')">
+              2. POS (dstoolbox — สั่งอาหาร · ห้องครัว · Dashboard)
+            </button>
+            <button class="sim-sys-btn" id="sys-btn-borrowing" onclick="selectSystem('borrowing')">
+              3. Borrowing (ยืมหนังสือ · Admin รับคืน & แก้ไขสต็อก)
+            </button>
+          </div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);" id="simStatusHint">
+            คลิกปุ่มในแต่ละขั้นตอนเพื่อดูการเปลี่ยนหน้าอัตโนมัติ
+          </div>
+        </div>
+
+        <!-- Stepper Navigation Bar -->
+        <div class="stepper-row" id="stepperContainer"></div>
+
+        <!-- Dynamic Stage Content -->
+        <div id="stageContainer"></div>
+      </div>
+    </section>
+
+    <!-- Section: Technical Skills & Education / Hackathon -->
+    <section id="skills">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow" data-i18n="sec4_eyebrow">Competencies & Background</div>
+          <h2 class="section-title" data-i18n="sec4_title">Technical Skills, Education & Hackathon</h2>
+        </div>
+      </div>
+
+      <div class="two-col-grid">
+        <div class="info-card">
+          <div class="skill-group">
+            <div class="skill-group-title">
+              <span style="color: var(--sky-primary);">●</span>
+              <span data-i18n="sk_cat1">Data Analysis & Visualization (Priority #1)</span>
+            </div>
+            <div class="tech-stack-row" style="border-top: none; padding-top: 0.2rem;">
+              <span class="tech-pill">Python (Pandas)</span>
+              <span class="tech-pill">Matplotlib</span>
+              <span class="tech-pill">Exploratory Data Analysis (EDA)</span>
+              <span class="tech-pill">Dashboard Design</span>
+              <span class="tech-pill">Business Insight Generation</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-title">
+              <span style="color: var(--sky-primary);">●</span>
+              <span data-i18n="sk_cat2">Databases & Data Processing (ETL)</span>
+            </div>
+            <div class="tech-stack-row" style="border-top: none; padding-top: 0.2rem;">
+              <span class="tech-pill">SQL</span>
+              <span class="tech-pill">SQLite</span>
+              <span class="tech-pill">Data Cleaning</span>
+              <span class="tech-pill">ETL Import Pipelines (Excel/CSV/TXT)</span>
+              <span class="tech-pill">NLP Text Parsing</span>
+              <span class="tech-pill">Relational Schema Design</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-title">
+              <span style="color: var(--sky-primary);">●</span>
+              <span data-i18n="sk_cat3">Web Development & Frameworks</span>
+            </div>
+            <div class="tech-stack-row" style="border-top: none; padding-top: 0.2rem;">
+              <span class="tech-pill">Django (Views, Templates, Admin)</span>
+              <span class="tech-pill">HTML5</span>
+              <span class="tech-pill">CSS3</span>
+              <span class="tech-pill">Bootstrap</span>
+              <span class="tech-pill">Google OAuth (django-allauth)</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-title">
+              <span style="color: var(--sky-primary);">●</span>
+              <span data-i18n="sk_cat4">Architecture, QA & Core Competencies</span>
+            </div>
+            <div class="tech-stack-row" style="border-top: none; padding-top: 0.2rem;">
+              <span class="tech-pill">System Architecture</span>
+              <span class="tech-pill">Analytical Thinking</span>
+              <span class="tech-pill">Debugging & Auditing</span>
+              <span class="tech-pill">System Optimization</span>
+              <span class="tech-pill">Problem-Solving</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="timeline-item">
+            <div class="timeline-title" data-i18n="edu_uni">Ubon Ratchathani University (มหาวิทยาลัยอุบลราชธานี)</div>
+            <div class="timeline-sub" data-i18n="edu_deg">B.Sc. in Data Science and Software Innovation (Final-Year Student)</div>
+            <p class="timeline-desc" data-i18n="edu_desc">
+              Focused on data analytics, statistical modeling, relational database architecture, and full-stack software engineering with Python and Django. Available for full-time internship from November 2026 to March 2027.
             </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-title" data-i18n="hack_title">Data Analysis Competition — Hackathon Participant</div>
+            <div class="timeline-sub" data-i18n="hack_org">Ubon Ratchathani University</div>
+            <p class="timeline-desc" data-i18n="hack_desc">
+              Participated in a university-wide data analysis hackathon investigating campus WiFi usage patterns. Collaborated in a team to clean datasets, analyze peak utilization trends, and propose data-driven optimization solutions using Python.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-title" data-i18n="doc_title">Verified Resume Documents (Google Docs)</div>
+            <div class="timeline-sub" data-i18n="doc_sub">Direct links for recruiters & HR teams</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+              <a href="https://docs.google.com/document/d/15T5NsIYkHv8B-dfSgYsCciFCTAziuxdzB-f8BqPyRA8/edit" target="_blank" rel="noopener noreferrer" class="github-link-pill">
+                📄 Atsadawut Resume DA ↗
+              </a>
+              <a href="https://docs.google.com/document/d/1KvwArRS4oLx_rPxeh9INc8K6fcExpODDaGTv9NioYHg/edit" target="_blank" rel="noopener noreferrer" class="github-link-pill">
+                📄 Atsadawut Resume (IT/Dev) ↗
+              </a>
+              <a href="https://docs.google.com/document/d/1qr06TYQOtPIYkuH1IB1fr1XDVjHOsvEgDkD8HxrN4KY/edit" target="_blank" rel="noopener noreferrer" class="github-link-pill">
+                📄 เรซูเม่ภาษาไทย ↗
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="flex flex-wrap gap-3">
-            <a href="https://docs.google.com/document/d/15T5NsIYkHv8B-dfSgYsCciFCTAziuxdzB-f8BqPyRA8/edit" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-5 py-2.5 rounded-lg text-sm transition">
-                View Resume (DA)
-            </a>
-            <a href="https://github.com/ManYaiMark" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 px-5 py-2.5 rounded-lg text-sm transition">
-                GitHub Profile
-            </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer / Contact -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="contact-banner">
+        <div>
+          <div class="section-eyebrow" data-i18n="contact_eyebrow">Ready to Contribute · Nov 2026 – Mar 2027</div>
+          <h2 style="font-size: 1.45rem; font-weight: 800; margin-bottom: 0.25rem;" data-i18n="contact_title">Let's Connect for Internship Opportunities</h2>
+          <p style="font-size: 0.88rem; color: var(--text-secondary);" data-i18n="contact_sub">
+            Open to Data Analyst (#1), Web Developer (#2), Software Developer (#3), and QA (#4) internship roles.
+          </p>
         </div>
-    </header>
 
-    <main class="max-w-6xl mx-auto px-6 py-10 space-y-12">
+        <div class="contact-details">
+          <a href="mailto:atasdwut123@gmail.com" class="btn-primary">
+            <span>✉️</span> <span>atasdwut123@gmail.com</span>
+          </a>
+          <a href="tel:0811643122" class="btn-secondary">
+            <span>📞</span> <span>081-164-3122</span>
+          </a>
+          <a href="https://github.com/ManYaiMark" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <span>🐙</span> <span>github.com/ManYaiMark</span>
+          </a>
+        </div>
+      </div>
 
-        <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-xl">
-                <p class="text-slate-400 text-xs uppercase">Core Stack</p>
-                <p class="text-2xl font-bold text-white mt-1">Python & SQL</p>
-                <p class="text-emerald-400 text-xs mt-1">Pandas, Matplotlib, SQLite</p>
-            </div>
-            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-xl">
-                <p class="text-slate-400 text-xs uppercase">Data Engineering</p>
-                <p class="text-2xl font-bold text-white mt-1">ETL Pipelines</p>
-                <p class="text-emerald-400 text-xs mt-1">Excel / CSV / TXT & NLP Parsing</p>
-            </div>
-            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-xl">
-                <p class="text-slate-400 text-xs uppercase">Analytics Projects</p>
-                <p class="text-2xl font-bold text-white mt-1">3 End-to-End</p>
-                <p class="text-emerald-400 text-xs mt-1">Finance, Retail POS, Inventory</p>
-            </div>
-            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-xl">
-                <p class="text-slate-400 text-xs uppercase">Education</p>
-                <p class="text-2xl font-bold text-white mt-1">Data Science</p>
-                <p class="text-emerald-400 text-xs mt-1">Ubon Ratchathani University</p>
-            </div>
-        </section>
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; color: var(--text-muted);">
+        <div>© 2026 Atsadawut Prasankham (อัษฏาวุธ ประสารคำ) · Ubon Ratchathani University</div>
+        <div data-i18n="footer_priority">Internship Priority: 1. Data Analyst (DA) · 2. Web Dev · 3. Software Dev · 4. QA</div>
+      </div>
+    </div>
+  </footer>
 
-        <section class="grid md:grid-cols-3 gap-6 items-center bg-slate-800/40 border border-slate-800 p-6 rounded-2xl">
-            <div class="md:col-span-1 space-y-3">
-                <h2 class="text-xl font-bold text-white">Technical Proficiency</h2>
-                <p class="text-slate-400 text-sm">
-                    Combining software engineering fundamentals with data analytics to build complete data pipelines—from raw data ingestion to visual storytelling.
+  
+  <!-- Source Code Viewer & Downloader Modal -->
+  <div id="codeModalOverlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 9999; align-items: center; justify-content: center; padding: 1.25rem;">
+    <div style="background: var(--bg-card); border: 1px solid var(--sky-border); border-radius: 14px; width: 100%; max-width: 960px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.6);">
+      <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; background: var(--bg-secondary);">
+        <div>
+          <strong style="font-size: 1rem; color: var(--text-primary);">💻 ซอร์สโค้ดทั้งหมด (atsadawut_portfolio.html)</strong>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">สามารถกดคัดลอกโค้ดทั้งหมด หรือกดดาวน์โหลดเป็นไฟล์ .html ไปเปิดในเครื่องได้ทันที</div>
+        </div>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <button class="btn-primary" style="padding: 0.45rem 0.9rem; font-size: 0.82rem;" onclick="copyFullSourceCode()">📋 คัดลอกโค้ดทั้งหมด</button>
+          <button class="btn-secondary" style="padding: 0.45rem 0.9rem; font-size: 0.82rem;" onclick="downloadHtmlFile()">⬇️ ดาวน์โหลดไฟล์ .html</button>
+          <button class="btn-secondary" style="padding: 0.45rem 0.75rem; font-size: 0.82rem;" onclick="closeCodeModal()">✕ ปิด</button>
+        </div>
+      </div>
+      <div style="padding: 1rem; overflow: auto; flex: 1; background: #090d16;">
+        <textarea id="sourceCodeViewerArea" readonly style="width: 100%; height: 60vh; background: transparent; color: #e2e8f0; border: none; font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.5; resize: none; outline: none;"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toastMsg">Copied atasdwut123@gmail.com to clipboard!</div>
+
+  <script>
+    let currentLang = 'en';
+    let currentRole = 'all';
+
+    /* =========================================================================
+      INTERACTIVE SYSTEM SIMULATOR STATE (3 REAL PROJECT WORKFLOWS)
+       ========================================================================= */
+    let activeSystem = 'moneymind'; // 'moneymind' | 'pos' | 'borrowing'
+
+    // 1. MoneyMind State
+    let mmStep = 1; // 1: Smart Input, 2: Review & Typo Check, 3: Real MoneyMind Dashboard
+    let mmRawText = `-50 ข้าวมันไก่
+-20 ขนม
+-10 น้ำ
+-100 เติมน้ำมัน
+-70 ข้าาว`;
+    let mmParsedRows = [];
+
+    const typoDictionary = {
+      'ข้าาว': { suggest: 'ข้าว', cat: 'อาหาร' },
+      'ข้่าว': { suggest: 'ข้าว', cat: 'อาหาร' },
+      'ก๋วยเตียว': { suggest: 'ก๋วยเตี๋ยว', cat: 'อาหาร' },
+      'นำ้': { suggest: 'น้ำ', cat: 'อาหาร' },
+      'น้ำามัน': { suggest: 'น้ำมัน', cat: 'เดินทาง' }
+    };
+
+    function classifyCategory(itemName, isIncome) {
+      if (isIncome) return 'รายรับ';
+      if (/ข้าว|ขนม|น้ำ|กาแฟ|ชานม|ก๋วยเตี๋ยว|หมู|ไก่|อาหาร|มื้อ/i.test(itemName)) return 'อาหาร';
+      if (/น้ำมัน|เดินทาง|รถ|วิน|บัส|น้ำมันรถ|เติมน้ำมัน/i.test(itemName)) return 'เดินทาง';
+      if (/หนังสือ|อุปกรณ์|เรียน|หอ|ไฟ|เน็ต/i.test(itemName)) return 'ของใช้/อื่นๆ';
+      return 'ไม่ระบุหมวด';
+    }
+
+    function parseMoneyMindInput(text) {
+      const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+      return lines.map((line, idx) => {
+        const match = line.match(/^([+-]?\d+(?:\.\d+)?)\s+(.+)$/);
+        if (!match) {
+          return {
+            id: idx,
+            raw: line,
+            amount: 0,
+            isIncome: false,
+            item: line,
+            suggestion: null,
+            fixed: false,
+            category: 'ไม่ระบุหมวด'
+          };
+        }
+        const val = parseFloat(match[1]);
+        const rawItem = match[2].trim();
+        const isInc = val > 0 && line.startsWith('+');
+        const amountSigned = isInc ? Math.abs(val) : -Math.abs(val);
+
+        let suggestion = null;
+        let detectedCat = classifyCategory(rawItem, isInc);
+        if (typoDictionary[rawItem]) {
+          suggestion = typoDictionary[rawItem].suggest;
+          detectedCat = typoDictionary[rawItem].cat;
+        } else if (/ข้า+ว/.test(rawItem) && rawItem !== 'ข้าว' && !rawItem.includes('ข้าวมันไก่')) {
+          suggestion = 'ข้าว';
+          detectedCat = 'อาหาร';
+        }
+
+        return {
+          id: idx,
+          raw: line,
+          amount: amountSigned,
+          isIncome: isInc,
+          item: rawItem,
+          suggestion: suggestion,
+          fixed: false,
+          category: detectedCat
+        };
+      });
+    }
+
+    // 2. POS (dstoolbox) State
+    let posStep = 1; // 1: Customer Menu & Cart, 2: Kitchen Order Queue, 3: POS Today Dashboard
+    const posMenu = [
+      { id: 'm1', name: 'ข้าวกะเพราหมูกรอบ', price: 65, icon: '🍛' },
+      { id: 'm2', name: 'ข้าวผัดกุ้ง', price: 70, icon: '🍤' },
+      { id: 'm3', name: 'ต้มยำกุ้งน้ำข้น', price: 120, icon: '🍲' },
+      { id: 'm4', name: 'ชาไทยเย็น', price: 35, icon: '🧋' },
+      { id: 'm5', name: 'เกี๊ยวทอดกรอบ', price: 45, icon: '🥟' }
+    ];
+    let posCart = [
+      { id: 'm1', name: 'ข้าวกะเพราหมูกรอบ', price: 65, qty: 1, icon: '🍛' },
+      { id: 'm4', name: 'ชาไทยเย็น', price: 35, qty: 1, icon: '🧋' }
+    ];
+    let posActiveKitchenOrder = null;
+    let posCompletedOrders = [];
+
+    // 3. Borrowing State
+    let borStep = 1; // 1: Member Book Selection, 2: Admin Return & Edit Book Info
+    let borBooks = [
+      { id: 'b1', title: 'Python for Data Analysis (3rd Ed.)', category: 'Data Science', stock: 3, borrowed: 1 },
+      { id: 'b2', title: 'Django 5 By Example', category: 'Web Development', stock: 2, borrowed: 0 },
+      { id: 'b3', title: 'SQL Performance Explained', category: 'Database Systems', stock: 4, borrowed: 1 },
+      { id: 'b4', title: 'Software Testing & QA Handbook', category: 'Quality Assurance', stock: 2, borrowed: 0 }
+    ];
+    let borLoans = [
+      { loanId: 'L-101', bookId: 'b1', title: 'Python for Data Analysis (3rd Ed.)', borrower: 'นักศึกษา A (รหัส 66xxxxxxx)', date: '14 ต.ค. 2026', status: 'borrowed' },
+      { loanId: 'L-102', bookId: 'b3', title: 'SQL Performance Explained', borrower: 'นักศึกษา B (รหัส 66xxxxxxx)', date: '15 ต.ค. 2026', status: 'borrowed' }
+    ];
+    let editingBookId = null;
+
+    function selectSystem(sys) {
+      activeSystem = sys;
+      ['moneymind', 'pos', 'borrowing'].forEach(k => {
+        document.getElementById('sys-btn-' + k).classList.toggle('active', k === sys);
+      });
+      renderSimulator();
+    }
+
+    function renderSimulator() {
+      const stepper = document.getElementById('stepperContainer');
+      const stage = document.getElementById('stageContainer');
+
+      if (activeSystem === 'moneymind') {
+        stepper.innerHTML = `
+          <div class="step-pill ${mmStep === 1 ? 'active' : (mmStep > 1 ? 'done' : '')}" onclick="goMmStep(1)">
+            <span>1</span> <span>Smart Input (พิมพ์รายการบันทึก)</span>
+          </div>
+          <span class="step-arrow">➔</span>
+          <div class="step-pill ${mmStep === 2 ? 'active' : (mmStep > 2 ? 'done' : '')}" onclick="goMmStep(2)">
+            <span>2</span> <span>ตรวจสอบข้อมูล & แนะนำคำผิด (ETL Validation)</span>
+          </div>
+          <span class="step-arrow">➔</span>
+          <div class="step-pill ${mmStep === 3 ? 'active' : ''}" onclick="goMmStep(3)">
+            <span>3</span> <span>หน้าแดชบอร์ด (MoneyMind Dashboard)</span>
+          </div>
+        `;
+        renderMoneyMindStage(stage);
+      } else if (activeSystem === 'pos') {
+        stepper.innerHTML = `
+          <div class="step-pill ${posStep === 1 ? 'active' : (posStep > 1 ? 'done' : '')}" onclick="goPosStep(1)">
+            <span>1</span> <span>หน้าลูกค้าสั่งอาหาร (Customer Order)</span>
+          </div>
+          <span class="step-arrow">➔</span>
+          <div class="step-pill ${posStep === 2 ? 'active' : (posStep > 2 ? 'done' : '')}" onclick="goPosStep(2)">
+            <span>2</span> <span>หน้าคนทำอาหาร (Kitchen Queue)</span>
+          </div>
+          <span class="step-arrow">➔</span>
+          <div class="step-pill ${posStep === 3 ? 'active' : ''}" onclick="goPosStep(3)">
+            <span>3</span> <span>หน้าแดชบอร์ดสรุปยอดวันนี้ (POS Dashboard)</span>
+          </div>
+        `;
+        renderPosStage(stage);
+      } else if (activeSystem === 'borrowing') {
+        stepper.innerHTML = `
+          <div class="step-pill ${borStep === 1 ? 'active' : 'done'}" onclick="goBorStep(1)">
+            <span>1</span> <span>หน้าเลือกและกดยืมหนังสือ (Member Borrow)</span>
+          </div>
+          <span class="step-arrow">➔</span>
+          <div class="step-pill ${borStep === 2 ? 'active' : ''}" onclick="goBorStep(2)">
+            <span>2</span> <span>หน้า Admin (กดรับคืนหนังสือ & แก้ไขข้อมูลหนังสือ)</span>
+          </div>
+        `;
+        renderBorrowingStage(stage);
+      }
+    }
+
+    /* ---------------- 1. MONEYMIND WORKFLOW ---------------- */
+    function goMmStep(step) {
+      if (step === 2 && mmStep === 1) {
+        const area = document.getElementById('mmRawTextarea');
+        if (area) mmRawText = area.value;
+        mmParsedRows = parseMoneyMindInput(mmRawText);
+      } else if (step === 3 && mmParsedRows.length === 0) {
+        mmParsedRows = parseMoneyMindInput(mmRawText);
+      }
+      mmStep = step;
+      renderSimulator();
+    }
+
+    function addSampleIncomeLine() {
+      const area = document.getElementById('mmRawTextarea');
+      if (area) {
+        area.value = area.value.trim() +'\n' + '+500 รายรับพิเศษ';
+        mmRawText = area.value;
+      }
+    }
+
+    function applyTypoFix(idx) {
+      if (mmParsedRows[idx] && mmParsedRows[idx].suggestion) {
+        mmParsedRows[idx].item = mmParsedRows[idx].suggestion;
+        mmParsedRows[idx].fixed = true;
+        mmParsedRows[idx].category = classifyCategory(mmParsedRows[idx].item, mmParsedRows[idx].isIncome);
+        renderSimulator();
+      }
+    }
+
+    function applyAllTypoFixes() {
+      mmParsedRows.forEach(r => {
+        if (r.suggestion && !r.fixed) {
+          r.item = r.suggestion;
+          r.fixed = true;
+          r.category = classifyCategory(r.item, r.isIncome);
+        }
+      });
+      renderSimulator();
+    }
+
+    function updateRowCategory(idx, newCat) {
+      if (mmParsedRows[idx]) {
+        mmParsedRows[idx].category = newCat;
+      }
+    }
+
+    function renderMoneyMindStage(stage) {
+      if (mmStep === 1) {
+        stage.innerHTML = `
+          <div class="stage-panel mm-input-grid">
+            <div>
+              <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.35rem;">
+                ✍️ ขั้นที่ 1: บันทึกรายการด้วยข้อความ (Smart Input ETL)
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.8rem;">
+                พิมพ์รายการแบบรวดเร็วบรรทัดละ 1 รายการ (เช่น <code>-50 ข้าวมันไก่</code> หรือ <code>-70 ข้าาว</code>) ระบบจะแยกตัวเลข หมวดหมู่ และตรวจจับคำผิดให้อัตโนมัติ
+              </p>
+              <textarea id="mmRawTextarea" class="mm-textarea" oninput="mmRawText = this.value">${mmRawText}</textarea>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.85rem;">
+                <button class="btn-primary" onclick="goMmStep(2)">
+                  🔍 กดตรวจสอบข้อมูล (Check & Validate) ➔
+                </button>
+                <button class="btn-secondary" onclick="addSampleIncomeLine()">
+                  ➕ ลองเพิ่มบรรทัดรายรับ (+500 รายรับพิเศษ)
+                </button>
+              </div>
+            </div>
+
+            <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.1rem;">
+              <div style="font-size: 0.8rem; font-weight: 700; color: var(--sky-primary); text-transform: uppercase; margin-bottom: 0.5rem;">
+                การทำงานเบื้องหลัง (Smart Input Pipeline)
+              </div>
+              <ul class="project-bullets">
+                <li><strong>Text & Regex Parsing:</strong> แยกเครื่องหมาย <code>-</code> (รายจ่าย) และ <code>+</code> (รายรับ) ออกจากชื่อรายการอัตโนมัติ</li>
+                <li><strong>Typo & Spell Suggestion:</strong> ตรวจจับคำที่พิมพ์ซ้ำหรือสะกดผิด เช่น <code>"ข้าาว"</code> แล้วแนะนำคำที่ถูกต้องคือ <code>"ข้าว"</code></li>
+                <li><strong>Auto-Categorization:</strong> จัดเข้าหมวดหมู่ (เช่น <em>อาหาร</em>, <em>เดินทาง</em>, <em>ไม่ระบุหมวด</em>) ก่อนส่งไปหน้าตารางตรวจสอบ</li>
+              </ul>
+            </div>
+          </div>
+        `;
+      } else if (mmStep === 2) {
+        const hasPendingTypos = mmParsedRows.some(r => r.suggestion && !r.fixed);
+        const rowsHtml = mmParsedRows.map((r, i) => {
+          let typoCell = `<span style="color: #34d399; font-size: 0.8rem; font-weight: 600;">✔ ปกติ</span>`;
+          if (r.suggestion && !r.fixed) {
+            typoCell = `
+              <div class="typo-alert-badge">
+                <span>💡 คำที่น่าจะเป็นคือ "<strong>${r.suggestion}</strong>"</span>
+                <button class="btn-fix-typo" onclick="applyTypoFix(${i})">แก้เป็น "${r.suggestion}"</button>
+              </div>
+            `;
+          } else if (r.fixed) {
+            typoCell = `<span style="color: var(--sky-primary); font-size: 0.8rem; font-weight: 600;">✨ แก้คำผิดเป็น "${r.item}" แล้ว</span>`;
+          }
+
+          return `
+            <tr>
+              <td style="font-family: var(--font-mono); color: var(--text-muted);">#${i + 1}</td>
+              <td><strong>${r.item}</strong></td>
+              <td>${typoCell}</td>
+              <td>
+                <select onchange="updateRowCategory(${i}, this.value)" style="background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.82rem;">
+                  <option value="อาหาร" ${r.category === 'อาหาร' ? 'selected' : ''}>อาหาร</option>
+                  <option value="เดินทาง" ${r.category === 'เดินทาง' ? 'selected' : ''}>เดินทาง</option>
+                  <option value="ไม่ระบุหมวด" ${r.category === 'ไม่ระบุหมวด' ? 'selected' : ''}>ไม่ระบุหมวด</option>
+                  <option value="รายรับ" ${r.category === 'รายรับ' ? 'selected' : ''}>รายรับ</option>
+                </select>
+              </td>
+              <td style="font-family: var(--font-mono); font-weight: 700; color: ${r.amount >= 0 ? '#34d399' : '#f87171'};">
+                ${r.amount >= 0 ? '+' : ''}${r.amount.toFixed(2)} บาท
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        stage.innerHTML = `
+          <div class="stage-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.9rem;">
+              <div>
+                <h3 style="font-size: 1.05rem; font-weight: 700;">🔎 ขั้นที่ 2: ตารางตรวจสอบข้อมูลที่จะบันทึก</h3>
+                <p style="font-size: 0.84rem; color: var(--text-secondary);">
+                  ตรวจสอบรายการที่ระบบสกัดออกมา กดรับคำแนะนำแก้คำผิด (เช่น <code>ข้าาว</code> ➔ <code>ข้าว</code>) แล้วกดบันทึกเพื่อดูหน้า Dashboard
                 </p>
-                <div class="flex flex-wrap gap-2 pt-2">
-                    <span class="bg-slate-800 border border-slate-700 px-3 py-1 rounded text-xs">Pandas</span>
-                    <span class="bg-slate-800 border border-slate-700 px-3 py-1 rounded text-xs">Matplotlib</span>
-                    <span class="bg-slate-800 border border-slate-700 px-3 py-1 rounded text-xs">SQLite</span>
-                    <span class="bg-slate-800 border border-slate-700 px-3 py-1 rounded text-xs">Data Cleaning</span>
-                    <span class="bg-slate-800 border border-slate-700 px-3 py-1 rounded text-xs">Django</span>
-                    <span class="bg-slate-800 border border-slate-700 px-3 py-1 rounded text-xs">Database Design</span>
-                </div>
-            </div>
-            <div class="md:col-span-2 bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-                <canvas id="skillsChart" height="110"></canvas>
-            </div>
-        </section>
-
-        <section class="space-y-6">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
-                    <h2 class="text-2xl font-bold text-white">Featured Data Projects</h2>
-                    <p class="text-slate-400 text-sm">Filter projects by primary data competency</p>
-                </div>
-                <div class="flex gap-2">
-                    <button onclick="filterProjects('all')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500 text-slate-950" id="btn-all">All Projects</button>
-                    <button onclick="filterProjects('dashboard')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" id="btn-dashboard">Dashboards & Viz</button>
-                    <button onclick="filterProjects('pipeline')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" id="btn-pipeline">ETL & Database</button>
-                </div>
+              </div>
+              ${hasPendingTypos ? `<button class="btn-secondary" onclick="applyAllTypoFixes()" style="border-color: #fbbf24; color: #fbbf24;">✨ แก้คำผิดทั้งหมดอัตโนมัติ</button>` : ''}
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6" id="project-grid">
-                <div class="project-card bg-slate-800/50 border border-slate-700/70 rounded-xl p-6 flex flex-col justify-between" data-category="dashboard pipeline">
-                    <div>
-                        <div class="flex justify-between items-start">
-                            <h3 class="text-lg font-bold text-white">MoneyMind</h3>
-                            <span class="text-xs bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded">Financial Analytics</span>
-                        </div>
-                        <p class="text-slate-400 text-xs mt-3">
-                            Personal finance analytics platform featuring automated multi-format data ingestion and interactive spending visualization.
-                        </p>
-                        <ul class="text-slate-300 text-xs mt-4 space-y-2 list-disc list-inside">
-                            <li><strong>ETL Pipeline:</strong> Automated ingestion from Excel, CSV, TXT, and NLP text parsing.</li>
-                            <li><strong>Data Processing:</strong> Used Pandas & SQLite to aggregate transactions by category and budget.</li>
-                            <li><strong>Visualization:</strong> Built interactive dashboard charts to highlight spending anomalies.</li>
-                        </ul>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-700/60 flex justify-between items-center">
-                        <span class="text-xs text-slate-400">Pandas • SQLite • Django</span>
-                        <a href="https://github.com/ManYaiMark/MoneyMind" target="_blank" class="text-emerald-400 hover:underline text-xs font-semibold">View Code →</a>
-                    </div>
-                </div>
-
-                <div class="project-card bg-slate-800/50 border border-slate-700/70 rounded-xl p-6 flex flex-col justify-between" data-category="dashboard">
-                    <div>
-                        <div class="flex justify-between items-start">
-                            <h3 class="text-lg font-bold text-white">dstoolbox (POS Analytics)</h3>
-                            <span class="text-xs bg-blue-500/10 text-blue-400 px-2.5 py-1 rounded">Retail BI</span>
-                        </div>
-                        <p class="text-slate-400 text-xs mt-3">
-                            Point-of-Sale system with an integrated executive analytics dashboard for tracking sales performance and customer loyalty.
-                        </p>
-                        <ul class="text-slate-300 text-xs mt-4 space-y-2 list-disc list-inside">
-                            <li><strong>Sales Dashboard:</strong> Visualized revenue trends, top-selling items, and order status via Matplotlib.</li>
-                            <li><strong>Customer Analytics:</strong> Modeled point accrual and coupon redemption behavior to track retention.</li>
-                            <li><strong>Data Modeling:</strong> Structured relational schemas for orders, carts, and session logs.</li>
-                        </ul>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-700/60 flex justify-between items-center">
-                        <span class="text-xs text-slate-400">Matplotlib • Python • SQL</span>
-                        <a href="https://github.com/ManYaiMark/dstoolbox" target="_blank" class="text-emerald-400 hover:underline text-xs font-semibold">View Code →</a>
-                    </div>
-                </div>
-
-                <div class="project-card bg-slate-800/50 border border-slate-700/70 rounded-xl p-6 flex flex-col justify-between" data-category="pipeline">
-                    <div>
-                        <div class="flex justify-between items-start">
-                            <h3 class="text-lg font-bold text-white">Borrowing System</h3>
-                            <span class="text-xs bg-purple-500/10 text-purple-400 px-2.5 py-1 rounded">Database & Reporting</span>
-                        </div>
-                        <p class="text-slate-400 text-xs mt-3">
-                            Library inventory and circulation tracking database designed for real-time stock auditing and historical usage reporting.
-                        </p>
-                        <ul class="text-slate-300 text-xs mt-4 space-y-2 list-disc list-inside">
-                            <li><strong>Database Design:</strong> Normalized SQLite schema tracking book availability and user logs.</li>
-                            <li><strong>Admin Reporting:</strong> Created historical borrowing views to identify high-demand titles.</li>
-                            <li><strong>Data Integrity:</strong> Enforced state validation across borrow and return workflows.</li>
-                        </ul>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-700/60 flex justify-between items-center">
-                        <span class="text-xs text-slate-400">SQLite • Database Design • Python</span>
-                        <a href="https://github.com/ManYaiMark/Borrowing" target="_blank" class="text-emerald-400 hover:underline text-xs font-semibold">View Code →</a>
-                    </div>
-                </div>
+            <div style="overflow-x: auto;">
+              <table class="mm-table">
+                <thead>
+                  <tr>
+                    <th>ลำดับ</th>
+                    <th>ชื่อรายการ</th>
+                    <th>การตรวจสอบคำผิด (Smart Suggestion)</th>
+                    <th>หมวดหมู่</th>
+                    <th>จำนวนเงิน</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${rowsHtml}
+                </tbody>
+              </table>
             </div>
-        </section>
 
-    </main>
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem;">
+              <button class="btn-secondary" onclick="goMmStep(1)">⬅ กลับไปแก้ไขข้อความ</button>
+              <button class="btn-primary" onclick="goMmStep(3)">💾 ยืนยันและบันทึกข้อมูลไปที่ Dashboard ➔</button>
+            </div>
+          </div>
+        `;
+      } else if (mmStep === 3) {
+        // Calculate totals ONLY from the newly saved items as requested ("เอาตามที่พึ่งบันทึกไป")
+        let totalIncome = 0;
+        let totalExpense = 0;
+        const catTotals = {};
 
-    <footer class="max-w-6xl mx-auto px-6 py-8 border-t border-slate-800 text-center md:flex justify-between items-center text-xs text-slate-400">
-        <p>© 2026 Atsadawut Prasankham — Data Science & Software Innovation</p>
-        <div class="space-x-4 mt-2 md:mt-0">
-            <span>Tel: 081-164-3122</span>
-            <span>•</span>
-            <a href="mailto:atasdwut123@gmail.com" class="hover:text-emerald-400">atasdwut123@gmail.com</a>
-            <span>•</span>
-            <a href="https://github.com/ManYaiMark" target="_blank" class="hover:text-emerald-400">github.com/ManYaiMark</a>
-        </div>
-    </footer>
-
-    <script>
-        const ctx = document.getElementById('skillsChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Python (Pandas)', 'SQL & SQLite', 'Data Visualization (Matplotlib)', 'ETL & Data Cleaning', 'Database Architecture', 'Django Web Framework'],
-                datasets: [{
-                    label: 'Project Application Depth (%)',
-                    data: [90, 85, 85, 88, 80, 92],
-                    backgroundColor: 'rgba(16, 185, 129, 0.7)',
-                    borderColor: 'rgba(16, 185, 129, 1)',
-                    borderWidth: 1,
-                    borderRadius: 6
-                }]
-            },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                plugins: { legend: { display: false } },
-                scales: {
-                    x: { max: 100, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
-                    y: { grid: { display: false }, ticks: { color: '#e2e8f0' } }
-                }
-            }
+        mmParsedRows.forEach(r => {
+          if (r.amount >= 0) {
+            totalIncome += r.amount;
+          } else {
+            const absExp = Math.abs(r.amount);
+            totalExpense += absExp;
+            const cat = r.category || 'ไม่ระบุหมวด';
+            catTotals[cat] = (catTotals[cat] || 0) + absExp;
+          }
         });
 
-        function filterProjects(category) {
-            const cards = document.querySelectorAll('.project-card');
-            const buttons = ['all', 'dashboard', 'pipeline'];
-            
-            buttons.forEach(btn => {
-                const el = document.getElementById('btn-' + btn);
-                if (btn === category) {
-                    el.className = 'px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500 text-slate-950';
-                } else {
-                    el.className = 'px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700';
-                }
-            });
+        const netBalance = totalIncome - totalExpense;
 
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category.includes(category)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
+        // Build SVG Donut chart segments from catTotals
+        const palette = {
+          'อาหาร': '#60a5fa',
+          'เดินทาง': '#f87171',
+          'ไม่ระบุหมวด': '#fb7185',
+          'ของใช้/อื่นๆ': '#fbbf24'
+        };
+
+        const catKeys = Object.keys(catTotals);
+        let cumulativePercent = 0;
+        const radius = 70;
+        const circumference = 2 * Math.PI * radius;
+
+        const circlesHtml = catKeys.map(cat => {
+          const val = catTotals[cat];
+          const frac = totalExpense > 0 ? val / totalExpense : 0;
+          const strokeDasharray = `${(frac * circumference).toFixed(2)} ${circumference.toFixed(2)}`;
+          const strokeDashoffset = (-cumulativePercent * circumference).toFixed(2);
+          cumulativePercent += frac;
+          const color = palette[cat] || '#94a3b8';
+          return `<circle r="${radius}" cx="100" cy="100" fill="transparent" stroke="${color}" stroke-width="34" stroke-dasharray="${strokeDasharray}" stroke-dashoffset="${strokeDashoffset}" transform="rotate(-90 100 100)" />`;
+        }).join('');
+
+        const legendHtml = catKeys.map(cat => {
+          const color = palette[cat] || '#94a3b8';
+          return `
+            <span style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; color: #475569;">
+              <span style="width: 24px; height: 10px; background: ${color}; display: inline-block; border-radius: 2px;"></span>
+              ${cat} (${catTotals[cat].toFixed(0)}฿)
+            </span>
+          `;
+        }).join('');
+
+        const maxBar = Math.max(totalIncome, totalExpense, 100);
+        const incHeightPct = Math.round((totalIncome / maxBar) * 100);
+        const expHeightPct = Math.round((totalExpense / maxBar) * 100);
+
+        stage.innerHTML = `
+          <div class="stage-panel">
+            <div class="mm-real-dashboard">
+              <!-- Top Navbar Matching Screenshot 3 -->
+              <div class="mm-real-nav">
+                <div class="mm-real-logo">
+                  <span>MoneyMind</span> <span>🧠</span>
+                </div>
+                <div class="mm-real-links">
+                  <span onclick="goMmStep(2)">ประวัติรายการ</span>
+                  <span onclick="goMmStep(1)" style="color: #0066ff; font-weight: 700;">บันทึกรายการ</span>
+                  <span>นำเข้าไฟล์</span>
+                  <span>งบประมาณ</span>
+                  <span>หมวดหมู่</span>
+                  <span class="mm-real-logout">ออกจากระบบ</span>
+                </div>
+              </div>
+
+              <div class="mm-real-body">
+                <!-- 3 Top KPI Cards Matching Screenshot 3 -->
+                <div class="mm-kpi-row">
+                  <div class="mm-kpi-blue">
+                    <div style="font-size: 0.85rem; opacity: 0.92; margin-bottom: 0.3rem;">💰 ยอดคงเหลือสุทธิ</div>
+                    <div style="font-size: 1.75rem; font-weight: 800;">${netBalance >= 0 ? '+' : ''}${netBalance.toFixed(2)} บาท</div>
+                  </div>
+                  <div class="mm-kpi-white">
+                    <div style="font-size: 0.85rem; color: #059669; font-weight: 600; margin-bottom: 0.3rem;">รายรับรวม</div>
+                    <div style="font-size: 1.65rem; font-weight: 800; color: #10b981;">+${totalIncome.toFixed(2)}</div>
+                  </div>
+                  <div class="mm-kpi-white">
+                    <div style="font-size: 0.85rem; color: #e11d48; font-weight: 600; margin-bottom: 0.3rem;">รายจ่ายรวม</div>
+                    <div style="font-size: 1.65rem; font-weight: 800; color: #ef4444;">-${totalExpense.toFixed(2)}</div>
+                  </div>
+                </div>
+
+                <!-- 2 Bottom Charts Matching Screenshot 3 -->
+                <div class="mm-charts-row">
+                  <!-- Left: Expense Share Donut Chart -->
+                  <div class="mm-chart-box">
+                    <div class="mm-chart-title">สัดส่วนค่าใช้จ่าย</div>
+                    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.6rem;">
+                      ${legendHtml || '<span style="font-size:0.8rem;color:#64748b;">ไม่มีรายการรายจ่าย</span>'}
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                      <svg width="200" height="200" viewBox="0 0 200 200">
+                        <circle r="${radius}" cx="100" cy="100" fill="transparent" stroke="#f1f5f9" stroke-width="34" />
+                        ${circlesHtml}
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Right: 7-Day Income vs Expense Chart + Saved List -->
+                  <div class="mm-chart-box">
+                    <div class="mm-chart-title">รายรับ-รายจ่าย 7 วันย้อนหลัง (แสดงยอดที่เพิ่งบันทึก)</div>
+                    <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 0.75rem; font-size: 0.78rem; color: #475569;">
+                      <span style="display: inline-flex; align-items: center; gap: 0.35rem;">
+                        <span style="width: 24px; height: 10px; background: #10b981; display: inline-block; border-radius: 2px;"></span> รายรับ
+                      </span>
+                      <span style="display: inline-flex; align-items: center; gap: 0.35rem;">
+                        <span style="width: 24px; height: 10px; background: #f87171; display: inline-block; border-radius: 2px;"></span> รายจ่าย
+                      </span>
+                    </div>
+
+                    <div style="height: 135px; display: flex; align-items: flex-end; justify-content: space-between; border-bottom: 1px solid #cbd5e1; padding: 0 0.75rem 0.4rem; gap: 0.5rem;">
+                      ${['10/10', '11/10', '12/10', '13/10', '14/10', '15/10', 'วันนี้ (ที่เพิ่งบันทึก)'].map((d, idx) => {
+                        const isToday = idx === 6;
+                        const hInc = isToday ? Math.max(incHeightPct, totalIncome > 0 ? 12 : 0) : 0;
+                        const hExp = isToday ? Math.max(expHeightPct, totalExpense > 0 ? 12 : 0) : 0;
+                        return `
+                          <div style="flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end;">
+                            <div style="display: flex; align-items: flex-end; gap: 4px; height: 105px; width: 100%; justify-content: center;">
+                              <div style="width: 14px; height: ${hInc}%; background: #10b981; border-radius: 3px 3px 0 0;" title="รายรับ: ${isToday ? totalIncome : 0} บาท"></div>
+                              <div style="width: 14px; height: ${hExp}%; background: #f87171; border-radius: 3px 3px 0 0;" title="รายจ่าย: ${isToday ? totalExpense : 0} บาท"></div>
+                            </div>
+                            <span style="font-size: 0.7rem; color: ${isToday ? '#0066ff' : '#64748b'}; font-weight: ${isToday ? '700' : '500'}; margin-top: 0.35rem;">${d}</span>
+                          </div>
+                        `;
+                      }).join('')}
+                    </div>
+
+                    <div style="margin-top: 0.85rem; font-size: 0.8rem; color: #334155;">
+                      <strong>รายการที่เพิ่งบันทึก (${mmParsedRows.length} รายการ):</strong>
+                      <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.4rem;">
+                        ${mmParsedRows.map(r => `
+                          <span style="background: #f1f5f9; border: 1px solid #e2e8f0; padding: 0.2rem 0.55rem; border-radius: 6px;">
+                            ${r.item} (<span style="color:#64748b;">${r.category}</span>): <strong style="color:${r.amount >= 0 ? '#059669' : '#e11d48'};">${r.amount}฿</strong>
+                          </span>
+                        `).join('')}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+              <button class="btn-secondary" onclick="goMmStep(1)">⬅ กลับไปพิมพ์รายการเพิ่ม (Step 1)</button>
+              <button class="btn-primary" onclick="selectSystem('pos')">ไปลองระบบที่ 2: POS (สั่งอาหาร) ➔</button>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    /* ---------------- 2. POS (dstoolbox) WORKFLOW ---------------- */
+    function goPosStep(step) {
+      posStep = step;
+      renderSimulator();
+    }
+
+    function addToPosCart(menuId) {
+      const item = posMenu.find(m => m.id === menuId);
+      if (!item) return;
+      const existing = posCart.find(c => c.id === menuId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        posCart.push({ ...item, qty: 1 });
+      }
+      renderSimulator();
+    }
+
+    function clearPosCartItem(menuId) {
+      posCart = posCart.filter(c => c.id !== menuId);
+      renderSimulator();
+    }
+
+    function submitPosOrder() {
+      if (posCart.length === 0) return;
+      const total = posCart.reduce((acc, c) => acc + c.price * c.qty, 0);
+      const totalItems = posCart.reduce((acc, c) => acc + c.qty, 0);
+      posActiveKitchenOrder = {
+        orderNo: 101 + posCompletedOrders.length,
+        time: new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' }),
+        items: JSON.parse(JSON.stringify(posCart)),
+        total: total,
+        totalItems: totalItems
+      };
+      posCart = [];
+      posStep = 2; // Jump to kitchen screen!
+      renderSimulator();
+    }
+
+    function completeKitchenOrder() {
+      if (posActiveKitchenOrder) {
+        posCompletedOrders.push({
+          ...posActiveKitchenOrder,
+          status: 'เสิร์ฟเรียบร้อย'
+        });
+        posActiveKitchenOrder = null;
+      }
+      posStep = 3; // Jump to POS Dashboard!
+      renderSimulator();
+    }
+
+    function renderPosStage(stage) {
+      if (posStep === 1) {
+        const cartTotal = posCart.reduce((acc, c) => acc + c.price * c.qty, 0);
+        stage.innerHTML = `
+          <div class="stage-panel mm-input-grid">
+            <div>
+              <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.35rem;">
+                🍽️ ขั้นที่ 1: หน้าลูกค้าเลือกเมนูและสั่งอาหาร (POS Customer View)
+              </h3>
+              <p style="font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 0.85rem;">
+                กดเพิ่มเมนูอาหารลงตะกร้า แล้วกดปุ่ม <strong>"สั่งอาหาร"</strong> ระบบจะส่งรายการไปที่หน้าจอคนทำอาหารทันที
+              </p>
+              <div class="pos-menu-grid">
+                ${posMenu.map(m => `
+                  <div class="pos-item-card">
+                    <div>
+                      <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">${m.icon}</div>
+                      <div style="font-weight: 700; font-size: 0.9rem;">${m.name}</div>
+                      <div style="color: var(--sky-primary); font-family: var(--font-mono); font-size: 0.84rem; font-weight: 700;">${m.price} บาท</div>
+                    </div>
+                    <button class="btn-secondary" style="width: 100%; justify-content: center; padding: 0.4rem;" onclick="addToPosCart('${m.id}')">
+                      + เพิ่มลงตะกร้า
+                    </button>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.15rem;">
+              <h4 style="font-size: 0.96rem; font-weight: 700; margin-bottom: 0.75rem;">🛒 ตะกร้าสั่งอาหาร (Cart)</h4>
+              ${posCart.length === 0 ? `<div style="color: var(--text-muted); font-size: 0.85rem; padding: 1rem 0;">ยังไม่มีรายการอาหารในตะกร้า กรุณากดเพิ่มเมนูด้านซ้าย</div>` : `
+                <div style="display: grid; gap: 0.5rem; margin-bottom: 1rem;">
+                  ${posCart.map(c => `
+                    <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); padding: 0.55rem 0.75rem; border-radius: 8px; font-size: 0.85rem;">
+                      <div><strong>${c.icon} ${c.name}</strong> <span style="color: var(--sky-primary);">x${c.qty}</span></div>
+                      <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-family: var(--font-mono); font-weight: 700;">${c.price * c.qty}฿</span>
+                        <button onclick="clearPosCartItem('${c.id}')" style="background: transparent; border: none; color: #f87171; cursor: pointer;">✕</button>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              `}
+              <div style="display: flex; justify-content: space-between; font-weight: 700; padding-top: 0.75rem; border-top: 1px solid var(--border-color); margin-bottom: 1rem;">
+                <span>ยอดรวมทั้งสิ้น:</span>
+                <span style="color: var(--sky-primary); font-size: 1.1rem; font-family: var(--font-mono);">${cartTotal} บาท</span>
+              </div>
+              <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="submitPosOrder()" ${posCart.length === 0 ? 'disabled style="opacity:0.5;width:100%;justify-content:center;"' : ''}>
+                🚀 กดสั่งอาหาร (ส่งเข้าห้องครัว) ➔
+              </button>
+            </div>
+          </div>
+        `;
+      } else if (posStep === 2) {
+        stage.innerHTML = `
+          <div class="stage-panel" style="max-width: 680px; margin: 0 auto; background: var(--bg-secondary); border: 1px solid var(--sky-border); border-radius: 12px; padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <div>
+                <span class="availability-pill" style="margin-bottom: 0.3rem;">👨‍🍳 หน้าจอสำหรับคนทำอาหาร (Kitchen Display)</span>
+                <h3 style="font-size: 1.15rem; font-weight: 800;">
+                  ${posActiveKitchenOrder ? `ออเดอร์ #${posActiveKitchenOrder.orderNo} — กำลังรอปรุงอาหาร` : 'ไม่มีออเดอร์ค้างในครัว'}
+                </h3>
+              </div>
+              <span style="font-family: var(--font-mono); font-size: 0.84rem; color: var(--text-muted);">
+                ${posActiveKitchenOrder ? `เวลาสั่ง: ${posActiveKitchenOrder.time}` : ''}
+              </span>
+            </div>
+
+            ${posActiveKitchenOrder ? `
+              <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem; margin-bottom: 1.2rem;">
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">รายการที่ต้องทำ:</div>
+                ${posActiveKitchenOrder.items.map(item => `
+                  <div style="display: flex; justify-content: space-between; padding: 0.45rem 0; border-bottom: 1px dashed var(--border-color); font-size: 0.92rem;">
+                    <span>${item.icon} <strong>${item.name}</strong></span>
+                    <span style="color: var(--sky-primary); font-weight: 700;">จำนวน ${item.qty} จาน</span>
+                  </div>
+                `).join('')}
+              </div>
+              <button class="btn-primary" style="width: 100%; justify-content: center; font-size: 0.96rem; padding: 0.85rem;" onclick="completeKitchenOrder()">
+                ✅ กดยืนยัน: ทำอาหารเสร็จแล้ว (อัปเดตไปหน้า Dashboard) ➔
+              </button>
+            ` : `
+              <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1rem;">
+                ออเดอร์ถูกทำเสร็จและส่งไปยังหน้า Dashboard เรียบร้อยแล้ว สามารถกลับไปสั่งเพิ่ม หรือเปิดดูหน้า Dashboard ได้เลย
+              </p>
+              <div style="display: flex; gap: 0.65rem;">
+                <button class="btn-secondary" onclick="goPosStep(1)">⬅ กลับไปสั่งอาหารเพิ่ม</button>
+                <button class="btn-primary" onclick="goPosStep(3)">📊 ไปดูหน้า POS Dashboard ➔</button>
+              </div>
+            `}
+          </div>
+        `;
+      } else if (posStep === 3) {
+        const totalOrders = posCompletedOrders.length;
+        const totalRevenue = posCompletedOrders.reduce((acc, o) => acc + o.total, 0);
+        const totalDishes = posCompletedOrders.reduce((acc, o) => acc + o.totalItems, 0);
+        const dishCounts = {};
+        posCompletedOrders.forEach(o => {
+          o.items.forEach(i => {
+            dishCounts[i.name] = (dishCounts[i.name] || 0) + i.qty;
+          });
+        });
+
+        stage.innerHTML = `
+          <div class="stage-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+              <div>
+                <h3 style="font-size: 1.1rem; font-weight: 800;">📊 ขั้นที่ 3: POS Admin Dashboard — สรุปยอดออเดอร์วันนี้</h3>
+                <p style="font-size: 0.84rem; color: var(--text-secondary);">ข้อมูลอัปเดตสดจากออเดอร์ที่คุณกดสั่งและกดทำอาหารเสร็จเมื่อสักครู่</p>
+              </div>
+              <button class="btn-secondary" onclick="goPosStep(1)">➕ สั่งออเดอร์เพิ่มเพื่อดูยอดอัปเดต</button>
+            </div>
+
+            <div class="mm-kpi-row" style="margin-bottom: 1.1rem;">
+              <div style="background: var(--bg-secondary); border: 1px solid var(--sky-border); border-radius: 10px; padding: 1.1rem;">
+                <div style="font-size: 0.8rem; color: var(--text-muted);">จำนวนออเดอร์ที่ทำเสร็จวันนี้</div>
+                <div style="font-size: 1.65rem; font-weight: 800; color: var(--sky-primary);">${totalOrders} ออเดอร์</div>
+              </div>
+              <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.1rem;">
+                <div style="font-size: 0.8rem; color: var(--text-muted);">ยอดขายรวมวันนี้</div>
+                <div style="font-size: 1.65rem; font-weight: 800; color: #34d399;">${totalRevenue.toFixed(2)} บาท</div>
+              </div>
+              <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.1rem;">
+                <div style="font-size: 0.8rem; color: var(--text-muted);">จำนวนอาหารที่ปรุงเสร็จ</div>
+                <div style="font-size: 1.65rem; font-weight: 800;">${totalDishes} รายการ</div>
+              </div>
+            </div>
+
+            <div class="mm-input-grid">
+              <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.1rem;">
+                <h4 style="font-size: 0.92rem; font-weight: 700; margin-bottom: 0.65rem;">🍲 รายการอาหารที่ทำไปวันนี้</h4>
+                ${Object.keys(dishCounts).length === 0 ? `<div style="font-size: 0.84rem; color: var(--text-muted);">ยังไม่มีรายการที่ทำเสร็จ ลองกดสั่งอาหารจากขั้นที่ 1 ได้เลยครับ</div>` :
+                  Object.keys(dishCounts).map(name => `
+                    <div style="display: flex; justify-content: space-between; padding: 0.45rem 0; border-bottom: 1px solid var(--border-color); font-size: 0.86rem;">
+                      <span>${name}</span>
+                      <strong style="color: var(--sky-primary);">${dishCounts[name]} จาน</strong>
+                    </div>
+                  `).join('')
                 }
-            });
+              </div>
+
+              <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.1rem;">
+                <h4 style="font-size: 0.92rem; font-weight: 700; margin-bottom: 0.65rem;">🧾 ประวัติออเดอร์ล่าสุด</h4>
+                ${posCompletedOrders.length === 0 ? `<div style="font-size: 0.84rem; color: var(--text-muted);">ยังไม่มีประวัติออเดอร์</div>` :
+                  posCompletedOrders.map(o => `
+                    <div style="display: flex; justify-content: space-between; padding: 0.45rem 0; border-bottom: 1px solid var(--border-color); font-size: 0.85rem;">
+                      <span><strong>Order #${o.orderNo}</strong> (${o.items.map(i => i.name + ' x' + i.qty).join(', ')})</span>
+                      <span style="color: #34d399; font-weight: 700;">${o.total}฿ ✔</span>
+                    </div>
+                  `).join('')
+                }
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    /* ---------------- 3. BORROWING WORKFLOW ---------------- */
+    function goBorStep(step) {
+      borStep = step;
+      renderSimulator();
+    }
+
+    function borrowBookAction(bookId) {
+      const book = borBooks.find(b => b.id === bookId);
+      if (!book || book.stock <= 0) return;
+      book.stock -= 1;
+      book.borrowed += 1;
+      borLoans.unshift({
+        loanId: 'L-' + (101 + borLoans.length),
+        bookId: book.id,
+        title: book.title,
+        borrower: 'คุณ (ผู้ทดสอบระบบ Portfolio)',
+        date: 'วันนี้ (เพิ่งกดยืม)',
+        status: 'borrowed'
+      });
+      borStep = 2; // Jump to Admin view to show the borrowed record & return/edit controls!
+      renderSimulator();
+    }
+
+    function returnBookAction(loanId) {
+      const loan = borLoans.find(l => l.loanId === loanId);
+      if (!loan || loan.status === 'returned') return;
+      loan.status = 'returned';
+      const book = borBooks.find(b => b.id === loan.bookId);
+      if (book) {
+        book.stock += 1;
+        book.borrowed = Math.max(0, book.borrowed - 1);
+      }
+      renderSimulator();
+    }
+
+    function startEditBook(bookId) {
+      editingBookId = bookId;
+      renderSimulator();
+    }
+
+    function saveEditBook(bookId) {
+      const book = borBooks.find(b => b.id === bookId);
+      if (book) {
+        const titleInput = document.getElementById('edit-title-' + bookId);
+        const stockInput = document.getElementById('edit-stock-' + bookId);
+        if (titleInput && titleInput.value.trim()) book.title = titleInput.value.trim();
+        if (stockInput && !isNaN(parseInt(stockInput.value, 10))) {
+          book.stock = Math.max(0, parseInt(stockInput.value, 10));
         }
-    </script>
+      }
+      editingBookId = null;
+      renderSimulator();
+    }
+
+    function renderBorrowingStage(stage) {
+      if (borStep === 1) {
+        stage.innerHTML = `
+          <div class="stage-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.9rem;">
+              <div>
+                <h3 style="font-size: 1.05rem; font-weight: 700;">📚 ขั้นที่ 1: หน้าเลือกหนังสือและกดยืม (Member View)</h3>
+                <p style="font-size: 0.84rem; color: var(--text-secondary);">
+                  เลือกหนังสือแล้วกดปุ่ม <strong>"กดยืมหนังสือ"</strong> ระบบจะตัดสต็อกและพาไปหน้า Admin เพื่อทดสอบการรับคืนและแก้ไขข้อมูลหนังสือทันที
+                </p>
+              </div>
+              <button class="btn-secondary" onclick="goBorStep(2)">ไปหน้า Admin โดยตรง ➔</button>
+            </div>
+
+            <div class="pos-menu-grid">
+              ${borBooks.map(b => `
+                <div class="pos-item-card">
+                  <div>
+                    <span class="mini-tag" style="display: inline-block; margin-bottom: 0.45rem;">${b.category}</span>
+                    <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.35rem;">${b.title}</div>
+                    <div style="font-size: 0.82rem; color: ${b.stock > 0 ? '#34d399' : '#f87171'}; font-weight: 600;">
+                      คงเหลือในคลัง: ${b.stock} เล่ม (กำลังถูกยืม ${b.borrowed})
+                    </div>
+                  </div>
+                  <button class="btn-primary" style="width: 100%; justify-content: center; padding: 0.48rem;" onclick="borrowBookAction('${b.id}')" ${b.stock <= 0 ? 'disabled style="opacity:0.4;width:100%;justify-content:center;"' : ''}>
+                    ${b.stock > 0 ? '📖 กดยืมหนังสือเล่มนี้ ➔' : 'สต็อกหมดชั่วคราว'}
+                  </button>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      } else if (borStep === 2) {
+        stage.innerHTML = `
+          <div class="stage-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+              <div>
+                <h3 style="font-size: 1.05rem; font-weight: 700;">🛠️ ขั้นที่ 2: หน้า Admin — รับคืนหนังสือ & แก้ไขข้อมูลหนังสือในคลัง</h3>
+                <p style="font-size: 0.84rem; color: var(--text-secondary);">
+                  จำลองฟีเจอร์ผู้ดูแลระบบครบทั้งการกดรับคืนหนังสือเมื่อลูกค้านำมาคืน และการแก้ไขชื่อ/จำนวนสต็อกหนังสือแบบเรียลไทม์
+                </p>
+              </div>
+              <button class="btn-secondary" onclick="goBorStep(1)">⬅ กลับไปหน้าเลือกยืมหนังสือ</button>
+            </div>
+
+            <div class="mm-input-grid">
+              <!-- Left: Admin Return / Circulation Audit -->
+              <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.1rem;">
+                <h4 style="font-size: 0.94rem; font-weight: 700; margin-bottom: 0.65rem; color: var(--sky-primary);">
+                  📥 1. รายการยืม-คืน (กดรับคืนเมื่อลูกค้านำหนังสือมาคืน)
+                </h4>
+                <div style="display: grid; gap: 0.55rem;">
+                  ${borLoans.map(l => `
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.7rem; display: flex; justify-content: space-between; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+                      <div style="font-size: 0.83rem;">
+                        <div><strong>${l.title}</strong></div>
+                        <div style="color: var(--text-muted); font-size: 0.78rem;">ผู้ยืม: ${l.borrower} · ${l.date}</div>
+                      </div>
+                      <div>
+                        ${l.status === 'borrowed' ? `
+                          <button class="btn-primary" style="padding: 0.35rem 0.7rem; font-size: 0.78rem;" onclick="returnBookAction('${l.loanId}')">
+                            📥 กดรับคืนหนังสือ
+                          </button>
+                        ` : `
+                          <span style="color: #34d399; font-size: 0.8rem; font-weight: 700;">✔ รับคืนเข้าคลังแล้ว</span>
+                        `}
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- Right: Admin Edit Book Info / Inventory Management -->
+              <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.1rem;">
+                <h4 style="font-size: 0.94rem; font-weight: 700; margin-bottom: 0.65rem; color: var(--sky-primary);">
+                  ✏️ 2. ระบบแก้ไขข้อมูลหนังสือและจำนวนสต็อก (Book CRUD)
+                </h4>
+                <div style="display: grid; gap: 0.55rem;">
+                  ${borBooks.map(b => `
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.7rem; font-size: 0.84rem;">
+                      ${editingBookId === b.id ? `
+                        <div style="display: grid; gap: 0.45rem;">
+                          <input id="edit-title-${b.id}" type="text" value="${b.title}" style="background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--sky-primary); padding: 0.35rem 0.55rem; border-radius: 6px; font-size: 0.83rem;" />
+                          <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                            <span style="font-size: 0.78rem; color: var(--text-muted);">จำนวนคงเหลือ (เล่ม):</span>
+                            <input id="edit-stock-${b.id}" type="number" min="0" value="${b.stock}" style="width: 80px; background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--sky-primary); padding: 0.3rem 0.5rem; border-radius: 6px; font-size: 0.83rem;" />
+                            <button class="btn-primary" style="padding: 0.3rem 0.7rem; font-size: 0.78rem;" onclick="saveEditBook('${b.id}')">บันทึก</button>
+                          </div>
+                        </div>
+                      ` : `
+                        <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;">
+                          <div>
+                            <div><strong>${b.title}</strong></div>
+                            <div style="color: var(--text-muted); font-size: 0.78rem;">คงเหลือ: <strong style="color:#34d399;">${b.stock} เล่ม</strong> · กำลังยืม: ${b.borrowed} เล่ม</div>
+                          </div>
+                          <button class="btn-secondary" style="padding: 0.3rem 0.65rem; font-size: 0.77rem;" onclick="startEditBook('${b.id}')">
+                            ✏️ แก้ไขข้อมูล
+                          </button>
+                        </div>
+                      `}
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    /* =========================================================================
+       ROLE FILTER & BILINGUAL TRANSLATION LOGIC
+       ========================================================================= */
+    const roleContent = {
+      all: {
+        en: {
+          pitch: "Final-year Data Science and Software Innovation student at Ubon Ratchathani University. Seeking an internship (Nov 2026 – Mar 2027) with top priority in Data Analytics (#1), alongside strong project proficiency in Web Development (#2), Software Development (#3), and QA (#4).",
+          indicator: "Showing complete portfolio highlights across Data Analytics (#1), Web Dev (#2), Software Dev (#3), and QA (#4).",
+          lensLabel: "ALL-AROUND HIGHLIGHTS (DA · WEB · DEV · QA)",
+          p1: [
+            "Built an interactive financial analytics dashboard using Python, Pandas, and SQLite to track spending trends and visualize transaction patterns.",
+            "Engineered an automated ETL and Smart Input data pipeline (NLP parsing, Excel/CSV/TXT) for cleaning, categorizing, and importing raw records.",
+            "Integrated Google OAuth (django-allauth) and Bootstrap admin tools for budget tracking and category management."
+          ],
+          p2: [
+            "Developed an admin sales analytics dashboard using Matplotlib to visualize revenue trends, top-selling products, and order-status distributions.",
+            "Designed a customer loyalty points, coupon redemption, and order-based accrual tracking system.",
+            "Implemented a full Django POS web application with cart, order workflows, authentication, and relational database schemas."
+          ],
+          p3: [
+            "Designed and managed a relational SQLite database to track library inventory status, book circulation, and historical borrowing trends.",
+            "Built admin reporting views to audit user borrowing history, monitor overdue patterns, and optimize inventory availability.",
+            "Implemented end-to-end book listings, detail pages, and borrow flows using Python, Django views, and HTML/CSS templates."
+          ]
+        },
+        th: {
+          pitch: "นักศึกษาปีสุดท้าย สาขาวิทยาศาสตร์ข้อมูลและนวัตกรรมซอฟต์แวร์ มหาวิทยาลัยอุบลราชธานี พร้อมฝึกงานช่วง พ.ย. 2026 – มี.ค. 2027 โดยสนใจตำแหน่ง Data Analyst เป็นอันดับ 1 และมีความพร้อมในสาย Web Developer (#2), Software Developer (#3) และ QA (#4)",
+          indicator: "กำลังแสดงจุดเด่นครบทุกด้าน: Data Analytics (#1), Web Dev (#2), Software Dev (#3) และ QA (#4)",
+          lensLabel: "จุดเด่นครบทุกสายงาน (DA · WEB · DEV · QA)",
+          p1: [
+            "สร้างแดชบอร์ดวิเคราะห์การเงินด้วย Python, Pandas และ SQLite เพื่อติดตามแนวโน้มค่าใช้จ่ายและแสดงกราฟธุรกรรม",
+            "พัฒนา ETL Pipeline และระบบ Smart Input (NLP Parsing รองรับ Excel/CSV/TXT) เพื่อทำความสะอาดและจัดหมวดหมู่ข้อมูลอัตโนมัติ",
+            "เชื่อมต่อระบบยืนยันตัวตน Google OAuth (django-allauth) และหน้าจัดการงบประมาณด้วย Django กับ Bootstrap"
+          ],
+          p2: [
+            "พัฒนาแดชบอร์ดวิเคราะห์ยอดขายสำหรับผู้ดูแลระบบด้วย Matplotlib แสดงแนวโน้มรายได้ สินค้าขายดี และสัดส่วนสถานะออเดอร์",
+            "วิเคราะห์พฤติกรรมลูกค้าผ่านการออกแบบระบบสะสมแต้ม แลกคูปองส่วนลด และคำนวณคะแนนตามยอดสั่งซื้อ",
+            "พัฒนาระบบเว็บขายหน้าร้าน (POS) ด้วย Django ครบทั้งตะกร้าสินค้า การจัดการออเดอร์ ระบบสมาชิก และฐานข้อมูลเชิงสัมพันธ์"
+          ],
+          p3: [
+            "ออกแบบและจัดการฐานข้อมูล SQLite เชิงสัมพันธ์เพื่อติดตามสถานะคลังหนังสือ การหมุนเวียนหนังสือ และแนวโน้มการยืมย้อนหลัง",
+            "สร้างหน้ารายงานสำหรับแอดมินเพื่อตรวจสอบประวัติการยืม ติดตามรูปแบบการคืนล่าช้า และบริหารจำนวนหนังสือให้เพียงพอ",
+            "พัฒนาเว็บแอปพลิเคชันแสดงรายการหนังสือ หน้าข้อมูลเชิงลึก และระบบยืม-คืนแบบเรียลไทม์ด้วย Python และ Django"
+          ]
+        }
+      },
+      da: {
+        en: {
+          pitch: "🎯 [Priority #1: Data Analyst Focus] Seeking a Data Analyst internship to apply hands-on skills in data cleaning, SQL querying, statistical analysis, and data visualization—transforming raw datasets into actionable business insights and automated dashboards.",
+          indicator: "Filtered for Priority #1: Data Analyst (SQL, Pandas, Matplotlib, ETL Pipelines & Business Insights).",
+          lensLabel: "📊 DATA ANALYST (DA) HIGHLIGHTS",
+          p1: [
+            "Built an interactive financial analytics dashboard using Python, Pandas, and SQLite to track spending trends and visualize transaction patterns.",
+            "Engineered an automated ETL and Smart Input pipeline (NLP parsing, Excel/CSV/TXT) for cleaning, categorizing, and importing raw financial records.",
+            "Designed budget tracking metrics and category-level aggregation models to help users identify cost-saving opportunities."
+          ],
+          p2: [
+            "Developed an admin sales analytics dashboard using Matplotlib to visualize revenue trends, top-selling products, and order-status distributions.",
+            "Analyzed customer purchasing behavior by designing a loyalty points, coupon redemption, and order-based accrual tracking model.",
+            "Queried relational POS transaction tables to evaluate cart conversions and item-level demand."
+          ],
+          p3: [
+            "Designed and queried a relational SQLite database to track library inventory status, book circulation, and historical borrowing trends.",
+            "Built admin reporting views to analyze user borrowing history, monitor overdue patterns, and optimize inventory availability.",
+            "Structured real-time inventory logging workflows for accurate circulation reporting."
+          ]
+        },
+        th: {
+          pitch: "🎯 [เป้าหมายอันดับ #1: Data Analyst] มุ่งเน้นการนำทักษะ Data Cleaning, การเขียน SQL, การวิเคราะห์ข้อมูลเชิงสำรวจ (EDA) และการสร้าง Visualization ด้วย Python (Pandas, Matplotlib) มาเปลี่ยนข้อมูลดิบให้เป็น Insight ทางธุรกิจและแดชบอร์ดอัตโนมัติ",
+          indicator: "กรองมุมมองสำหรับอันดับ #1: Data Analyst (เน้นการวิเคราะห์ข้อมูล, SQL, Pandas, Matplotlib และ ETL)",
+          lensLabel: "📊 จุดเด่นสาย DATA ANALYST (DA)",
+          p1: [
+            "สร้างแดชบอร์ดวิเคราะห์ข้อมูลทางการเงินด้วย Python, Pandas และ SQLite เพื่อติดตามแนวโน้มการใช้จ่ายและรูปแบบธุรกรรม",
+            "ออกแบบระบบ ETL และ Smart Input อัตโนมัติ (NLP Parsing, นำเข้าไฟล์ Excel/CSV/TXT) สำหรับทำ Data Cleaning และจัดหมวดหมู่ข้อมูลดิบ",
+            "สร้างตัวชี้วัดการใช้งบประมาณ (Budget Metrics) และโมเดลสรุปยอดรายหมวดหมู่เพื่อช่วยค้นหาจุดที่ประหยัดค่าใช้จ่ายได้"
+          ],
+          p2: [
+            "พัฒนาแดชบอร์ดวิเคราะห์ยอดขายด้วย Matplotlib เพื่อแสดงกราฟแนวโน้มรายได้ สินค้าขายดี และการกระจายตัวของสถานะคำสั่งซื้อ",
+            "วิเคราะห์พฤติกรรมการซื้อของลูกค้าด้วยการออกแบบโมเดลสะสมแต้ม การใช้คูปอง และการคำนวณแต้มตามยอดสั่งซื้อ",
+            "จัดโครงสร้างตารางข้อมูลธุรกรรม POS เพื่อใช้วิเคราะห์อัตราการสั่งซื้อและพฤติกรรมผู้ใช้งาน"
+          ],
+          p3: [
+            "ออกแบบฐานข้อมูลเชิงสัมพันธ์ SQLite เพื่อติดตามสถานะคลังหนังสือ อัตราการหมุนเวียนหนังสือ และแนวโน้มการยืมย้อนหลัง",
+            "สร้างหน้ารายงานสรุปสำหรับผู้ดูแลระบบเพื่อวิเคราะห์ประวัติการยืม ติดตามรูปแบบการส่งคืนล่าช้า และวางแผนจัดสรรหนังสือ",
+            "วางระบบบันทึกข้อมูลการยืม-คืนแบบเรียลไทม์เพื่อให้ข้อมูลที่ใช้ทำรายงานมีความแม่นยำสูง"
+          ]
+        }
+      },
+      web: {
+        en: {
+          pitch: "🌐 [Priority #2: Web Developer Focus] Experienced in building responsive full-stack web applications using Python, Django, HTML, CSS, and Bootstrap—featuring OAuth social login, interactive dashboards, and admin management portals.",
+          indicator: "Filtered for Priority #2: Web Developer (Django Views/Templates, HTML/CSS, Bootstrap, Authentication).",
+          lensLabel: "🌐 WEB DEVELOPER HIGHLIGHTS",
+          p1: [
+            "Implemented a responsive Django web application using Bootstrap for interactive financial charts and transaction views.",
+            "Integrated Google OAuth authentication via django-allauth alongside user profile, budget, and category management pages.",
+            "Built multi-format file upload interfaces (Excel/CSV/TXT) and interactive Smart Input web forms."
+          ],
+          p2: [
+            "Implemented a Django-based POS web application complete with interactive shopping cart, order placement, and session management.",
+            "Created secure user authentication flows and customer-facing coupon redemption & loyalty point interfaces.",
+            "Embedded Matplotlib visual analytics directly into custom Django admin dashboard templates."
+          ],
+          p3: [
+            "Developed a full-featured Django library web app with searchable book listings, detail pages, and step-by-step borrowing flows.",
+            "Designed clean HTML/CSS templates and customized Django admin views for librarians and borrowers.",
+            "Connected frontend borrow/return actions seamlessly to SQLite backend updates."
+          ]
+        },
+        th: {
+          pitch: "🌐 [เป้าหมายอันดับ #2: Web Developer] พัฒนาเว็บแอปพลิเคชันแบบ Full-Stack ด้วย Python, Django, HTML, CSS และ Bootstrap รองรับระบบสมาชิก Google OAuth หน้าแดชบอร์ดโต้ตอบ และระบบหลังบ้านสำหรับแอดมิน",
+          indicator: "กรองมุมมองสำหรับอันดับ #2: Web Developer (เน้น Django, HTML/CSS, Bootstrap และระบบ Authentication)",
+          lensLabel: "🌐 จุดเด่นสาย WEB DEVELOPER",
+          p1: [
+            "พัฒนาเว็บแอปด้วย Django และ Bootstrap สำหรับแสดงผลแดชบอร์ดกราฟการเงินและตารางรายการธุรกรรมที่รองรับทุกหน้าจอ",
+            "เชื่อมต่อระบบล็อกอินด้วยบัญชี Google ผ่าน django-allauth พร้อมหน้าจัดการโปรไฟล์ งบประมาณ และหมวดหมู่",
+            "สร้างหน้าเว็บสำหรับอัปโหลดไฟล์หลายนามสกุล (Excel/CSV/TXT) และฟอร์ม Smart Input ที่ใช้งานง่าย"
+          ],
+          p2: [
+            "พัฒนาเว็บแอปขายหน้าร้าน (POS) ด้วย Django มีระบบตะกร้าสินค้า การสั่งอาหาร และการจัดการ Session ของผู้ใช้",
+            "สร้างหน้าเว็บสำหรับระบบสมาชิก การแลกคูปองส่วนลด และการแสดงแต้มสะสมแบบอัปเดตทันที",
+            "ผสานกราฟวิเคราะห์ยอดขายจาก Matplotlib เข้ากับหน้าแดชบอร์ดของแอดมินบนเว็บได้อย่างลงตัว"
+          ],
+          p3: [
+            "พัฒนาเว็บแอปห้องสมุดด้วย Django แสดงรายการหนังสือ หน้าข้อมูลหนังสือแต่ละเล่ม และขั้นตอนการกดยืมผ่านหน้าเว็บ",
+            "ออกแบบโครงสร้างหน้าเว็บด้วย Django Views และ Templates ร่วมกับ HTML/CSS พื้นฐานที่สะอาดตา",
+            "ปรับแต่งระบบ Django Admin เพื่อให้เจ้าหน้าที่จัดการฐานข้อมูลและดูประวัติการยืมได้สะดวก"
+          ]
+        }
+      },
+      dev: {
+        en: {
+          pitch: "⚙️ [Priority #3: Software Developer Focus] Strong foundation in Python software engineering, relational database design, automated text/file processing pipelines, and modular system architecture.",
+          indicator: "Filtered for Priority #3: Software Developer (Python Logic, System Architecture, Relational DB Design, Pipelines).",
+          lensLabel: "⚙️ SOFTWARE DEVELOPER HIGHLIGHTS",
+          p1: [
+            "Architected an automated Python data ingestion pipeline using NLP text parsing and Pandas to process Excel, CSV, and TXT files.",
+            "Designed normalized SQLite schemas supporting multi-user budgets, recurring categories, and transaction aggregation.",
+            "Implemented modular backend services in Django separating ingestion logic from presentation views."
+          ],
+          p2: [
+            "Engineered transactional POS order-processing logic and automated loyalty point accrual calculations in Python.",
+            "Structured relational database schemas capturing orders, line items, coupons, cart conversions, and session state.",
+            "Collaborated in a team environment to design system architecture and integrate backend modules."
+          ],
+          p3: [
+            "Designed relational database tables and foreign-key constraints to maintain strict book circulation and inventory state.",
+            "Implemented backend state transitions for borrowing, returning, and overdue status calculation in Python.",
+            "Built reusable data access workflows ensuring real-time consistency across user and admin operations."
+          ]
+        },
+        th: {
+          pitch: "⚙️ [เป้าหมายอันดับ #3: Software Developer] มีพื้นฐานแข็งแกร่งในการเขียนโปรแกรมภาษา Python การออกแบบสถาปัตยกรรมระบบ การออกแบบฐานข้อมูลเชิงสัมพันธ์ และการสร้าง Pipeline ประมวลผลข้อมูลอัตโนมัติ",
+          indicator: "กรองมุมมองสำหรับอันดับ #3: Software Developer (เน้น Python Backend, System Architecture และ Database Design)",
+          lensLabel: "⚙️ จุดเด่นสาย SOFTWARE DEVELOPER",
+          p1: [
+            "ออกแบบและพัฒนา Pipeline นำเข้าข้อมูลด้วยภาษา Python โดยใช้เทคนิค NLP Parsing แยกข้อความและอ่านไฟล์ Excel/CSV/TXT",
+            "ออกแบบโครงสร้างฐานข้อมูล SQLite เชิงสัมพันธ์เพื่อรองรับข้อมูลผู้ใช้ งบประมาณ และการคำนวณยอดรวมรายหมวดหมู่",
+            "แยกส่วนตรรกะการประมวลผลข้อมูลหลังบ้าน (Backend Logic) ออกจากส่วนแสดงผลอย่างเป็นระบบ"
+          ],
+          p2: [
+            "พัฒนาตรรกะคำนวณยอดสั่งซื้อ ระบบตัดแต้ม/สะสมแต้มอัตโนมัติ และเงื่อนไขการใช้คูปองด้วยภาษา Python",
+            "ออกแบบ Schema ฐานข้อมูลเชิงสัมพันธ์สำหรับเก็บข้อมูลธุรกรรม POS ตะกร้าสินค้า และสถานะออเดอร์",
+            "ทำงานร่วมกับทีมในการวางสถาปัตยกรรมระบบและเชื่อมโยงโมดูลต่างๆ เข้าด้วยกัน"
+          ],
+          p3: [
+            "ออกแบบตารางฐานข้อมูลและความสัมพันธ์ของข้อมูลเพื่อคุมสถานะคลังหนังสือและประวัติการหมุนเวียนอย่างแม่นยำ",
+            "เขียนตรรกะควบคุมสถานะการยืม-คืน และการคำนวณกำหนดส่งคืนด้วย Python และ Django",
+            "วางโครงสร้างการบันทึกข้อมูลแบบ End-to-End เพื่อป้องกันข้อมูลซ้ำซ้อนหรือคลาดเคลื่อน"
+          ]
+        }
+      },
+      qa: {
+        en: {
+          pitch: "🛡️ [Priority #4: QA & System Testing Focus] Detail-oriented problem solver skilled in validating multi-format data imports, auditing transaction & inventory logs, detecting edge-case anomalies, and debugging web workflows.",
+          indicator: "Filtered for Priority #4: Quality Assurance (Data Validation, Audit Views, Debugging & Edge-Case Testing).",
+          lensLabel: "🛡️ QA & SYSTEM QUALITY HIGHLIGHTS",
+          p1: [
+            "Validated multi-format file imports (Excel/CSV/TXT) and NLP text parsing rules to prevent malformed financial records from entering SQLite.",
+            "Verified aggregation accuracy across budget metrics and category summaries against raw transaction logs.",
+            "Tested authentication boundaries and user role permissions across profile and budget management workflows."
+          ],
+          p2: [
+            "Verified POS cart-to-order state transitions, coupon redemption rules, and point accrual calculations for edge-case accuracy.",
+            "Monitored order-status distributions via admin analytics to spot fulfillment bottlenecks or anomalous transactions.",
+            "Debugged multi-user session handling and concurrent cart updates in a collaborative team repository."
+          ],
+          p3: [
+            "Built dedicated admin audit views to inspect user borrowing history, track overdue anomalies, and verify inventory counts.",
+            "Enforced end-to-end data capture validation so book availability statuses remain synchronized during borrow/return cycles.",
+            "Performed systematic debugging and database consistency checks across circulation records."
+          ]
+        },
+        th: {
+          pitch: "🛡️ [เป้าหมายอันดับ #4: QA & Testing] ถนัดการคิดวิเคราะห์ ตรวจสอบความถูกต้องของข้อมูล (Data Validation) การสร้างหน้ารายงานตรวจสอบประวัติ (Audit) การหาข้อบกพร่อง (Debugging) และการปรับปรุงคุณภาพระบบ",
+          indicator: "กรองมุมมองสำหรับอันดับ #4: QA & System Testing (เน้นการตรวจสอบข้อมูล, Audit Log และการหาข้อบกพร่อง)",
+          lensLabel: "🛡️ จุดเด่นสาย QA & SYSTEM QUALITY",
+          p1: [
+            "ตรวจสอบความถูกต้องของการนำเข้าไฟล์หลายรูปแบบ (Excel/CSV/TXT) และการแยกข้อความ NLP เพื่อป้องกันข้อมูลผิดพลาดลงฐานข้อมูล",
+            "เทียบเคียงความแม่นยำของสูตรคำนวณงบประมาณและยอดรวมรายหมวดหมู่กับรายการธุรกรรมดิบ",
+            "ทดสอบสิทธิ์การเข้าถึงข้อมูลของผู้ใช้แต่ละบัญชีและระบบยืนยันตัวตนให้ทำงานได้อย่างปลอดภัย"
+          ],
+          p2: [
+            "ทดสอบเงื่อนไขการคำนวณราคาในตะกร้าสินค้า การใช้คูปองส่วนลด และการสะสมแต้มในกรณีขอบเขต (Edge Cases)",
+            "ใช้กราฟสัดส่วนสถานะออเดอร์ในหน้าแอดมินเพื่อตรวจสอบความผิดปกติของรายการสั่งซื้อ",
+            "ค้นหาและแก้ไขข้อบกพร่อง (Debugging) ของระบบจัดการ Session และการทำงานร่วมกันในโปรเจกต์กลุ่ม"
+          ],
+          p3: [
+            "สร้างหน้ารายงานตรวจสอบ (Audit Views) สำหรับแอดมินเพื่อตรวจทานประวัติการยืมและติดตามรายการหนังสือที่เกินกำหนดส่ง",
+            "ควบคุมความถูกต้องของการบันทึกข้อมูลตั้งแต่ต้นทางถึงปลายทางเพื่อให้ยอดคงเหลือในคลังตรงกับความเป็นจริงเสมอ",
+            "ตรวจสอบความสอดคล้องของข้อมูลในฐานข้อมูล SQLite และปรับปรุงประสิทธิภาพการทำงานของระบบ"
+          ]
+        }
+      }
+    };
+
+    function renderRoleView() {
+      const data = roleContent[currentRole][currentLang];
+      document.getElementById('heroDynamicPitch').textContent = data.pitch;
+      document.getElementById('projectLensIndicator').textContent = data.indicator;
+      document.getElementById('p1-lens-label').textContent = data.lensLabel;
+      document.getElementById('p2-lens-label').textContent = data.lensLabel;
+      document.getElementById('p3-lens-label').textContent = data.lensLabel;
+
+      const fillBullets = (id, arr) => {
+        const ul = document.getElementById(id);
+        ul.innerHTML = arr.map(item => `<li>${item}</li>`).join('');
+      };
+      fillBullets('p1-bullets', data.p1);
+      fillBullets('p2-bullets', data.p2);
+      fillBullets('p3-bullets', data.p3);
+
+      ['all', 'da', 'web', 'dev', 'qa'].forEach(r => {
+        const tab = document.getElementById('tab-' + r);
+        if (tab) tab.classList.toggle('active', r === currentRole);
+        const card = document.getElementById('card-' + r);
+        if (card) card.classList.toggle('highlighted', r === currentRole);
+      });
+    }
+
+    function setRoleView(role) {
+      currentRole = role;
+      renderRoleView();
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'th' : 'en';
+      document.getElementById('langLabel').textContent = currentLang === 'en' ? 'EN / อังกฤษ' : 'TH / ไทย';
+      renderRoleView();
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      document.getElementById('themeIcon').textContent = next === 'dark' ? '🌙' : '☀️';
+      document.getElementById('themeLabel').textContent = next === 'dark' ? 'Dark' : 'Light';
+    }
+
+    function copyEmail() {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText('atasdwut123@gmail.com');
+      }
+      const toast = document.getElementById('toastMsg');
+      toast.textContent = currentLang === 'en'
+        ? 'Copied atasdwut123@gmail.com to clipboard!'
+        : 'คัดลอกอีเมล atasdwut123@gmail.com เรียบร้อยแล้ว!';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+
+    // Initialize on load
+    mmParsedRows = parseMoneyMindInput(mmRawText);
+    renderRoleView();
+    renderSimulator();
+  </script>
 </body>
 </html>
